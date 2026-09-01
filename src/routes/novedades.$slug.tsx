@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Breadcrumbs, Section, SectionHeading } from "@/components/central/primitives";
+import { BackButton } from "@/components/central/BackButton";
 import { NewsCard } from "@/components/central/cards";
 import { articles, getArticle } from "@/data/catalog";
 
@@ -42,8 +43,9 @@ function ArticlePage() {
 
   return (
     <>
-      <div className="container-central pt-8">
+      <div className="container-central flex flex-wrap items-center justify-between gap-4 pt-8">
         <Breadcrumbs items={[{ label: "Novedades", to: "/novedades" }, { label: article.title }]} />
+        <BackButton fallbackTo="/novedades" />
       </div>
 
       <article>

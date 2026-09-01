@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Clock, Globe, Instagram, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Breadcrumbs, Section, SectionHeading } from "@/components/central/primitives";
+import { BackButton } from "@/components/central/BackButton";
 import { StoreCard } from "@/components/central/cards";
 import { categoryName, getStore, stores } from "@/data/catalog";
 import { getLocation } from "@/data/locations";
@@ -44,8 +45,9 @@ function StorePage() {
 
   return (
     <>
-      <div className="container-central pt-8">
+      <div className="container-central flex flex-wrap items-center justify-between gap-4 pt-8">
         <Breadcrumbs items={[{ label: "Directorio", to: "/directorio" }, { label: store.name }]} />
+        <BackButton fallbackTo="/directorio" />
       </div>
 
       <Section className="pt-10 md:pt-12">
