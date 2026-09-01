@@ -18,7 +18,11 @@ export function BackButton({
 }) {
   const router = useRouter();
 
-  const canGoBack = typeof window !== "undefined" && window.history.length > 1;
+  const [canGoBack, setCanGoBack] = useState(false);
+
+  useEffect(() => {
+    setCanGoBack(window.history.length > 1);
+  }, []);
 
   const classes = cn(
     "inline-flex items-center gap-2 border border-current/25 px-4 py-2 eyebrow transition-colors hover:border-current",
