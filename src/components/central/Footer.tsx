@@ -135,7 +135,7 @@ export function Footer() {
             className="pointer-events-none mt-10 select-none overflow-hidden text-right opacity-[0.03] md:mt-14"
             aria-hidden
           >
-            <span className="wordmark inline-block text-[clamp(2.5rem,9vw,10rem)] leading-none">
+            <span className="inline-block font-display text-[clamp(2rem,8vw,9rem)] font-extrabold uppercase leading-none tracking-[0.08em]">
               CENTRAL
             </span>
           </div>
