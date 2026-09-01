@@ -19,12 +19,14 @@ export function Footer() {
   return (
     <footer className="relative isolate overflow-hidden bg-ink text-ink-foreground">
       <div className="container-central relative px-6 py-16 md:px-12 md:py-24 lg:py-32">
-        {/* Marca de agua tipográfica sutil */}
+        {/* Marca de agua tipográfica sutil, siempre completa */}
         <div
-          className="pointer-events-none absolute -bottom-8 -right-8 select-none whitespace-nowrap opacity-[0.03] md:-bottom-12 md:-right-12"
+          className="pointer-events-none absolute inset-x-0 bottom-0 select-none overflow-hidden whitespace-nowrap text-right opacity-[0.03]"
           aria-hidden
         >
-          <span className="wordmark text-[8rem] leading-none md:text-[16rem] lg:text-[24rem]">CENTRAL</span>
+          <span className="wordmark inline-block text-[clamp(4.5rem,14vw,14rem)] leading-none">
+            CENTRAL
+          </span>
         </div>
 
         <div className="relative z-10">
