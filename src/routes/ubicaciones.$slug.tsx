@@ -64,6 +64,13 @@ function LocationPage() {
         <div className="flex flex-wrap items-center gap-4">
           <StatusBadge status={location.status} className="bg-white/10" />
           <span className="text-sm text-ink-foreground/70">{location.openingInfo}</span>
+          {location.siteUrl && (
+            <Button asChild variant="secondary" className="rounded-none eyebrow">
+              <a href={location.siteUrl} target="_blank" rel="noreferrer">
+                Ir al sitio de {location.shortName}
+              </a>
+            </Button>
+          )}
         </div>
       </PageHero>
 
