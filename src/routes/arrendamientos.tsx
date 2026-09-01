@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { PageHero, Section, SectionHeading, StatusBadge } from "@/components/central/primitives";
 import { CtaSection } from "@/components/central/CtaSection";
+import { LeasingForm } from "@/components/central/LeasingForm";
 import { locations } from "@/data/locations";
 import { site } from "@/data/site";
 
@@ -72,9 +73,19 @@ function ArrendamientosPage() {
         image={texturaImg}
         breadcrumbs={[{ label: "Arrendamientos" }]}
       >
-        <Button asChild size="lg" variant="secondary" className="rounded-none px-8 eyebrow">
-          <Link to="/contacto">Quiero arrendar</Link>
-        </Button>
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <Button asChild size="lg" variant="secondary" className="rounded-none px-8 eyebrow">
+            <a href="#formulario">Quiero arrendar</a>
+          </Button>
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="rounded-none border-white/30 bg-transparent eyebrow text-ink-foreground hover:bg-white/10 hover:text-ink-foreground"
+          >
+            <Link to="/ubicaciones">Ver centros</Link>
+          </Button>
+        </div>
       </PageHero>
 
       <Section>
@@ -120,7 +131,7 @@ function ArrendamientosPage() {
                     </Link>
                   </Button>
                   <Button asChild className="rounded-none eyebrow">
-                    <Link to="/contacto">Solicitar información</Link>
+                    <a href="#formulario">Solicitar información</a>
                   </Button>
                 </div>
               </div>
@@ -172,6 +183,10 @@ function ArrendamientosPage() {
             </Link>
           </div>
         </div>
+      </Section>
+
+      <Section id="formulario" tone="sand" className="scroll-mt-24">
+        <LeasingForm />
       </Section>
 
       <CtaSection
