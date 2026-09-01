@@ -10,33 +10,89 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DirectorioIndexRouteImport } from './routes/directorio.index'
+import { Route as DirectorioSlugRouteImport } from './routes/directorio.$slug'
+import { Route as UbicacionesIndexRouteImport } from './routes/ubicaciones.index'
+import { Route as UbicacionesSlugRouteImport } from './routes/ubicaciones.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DirectorioIndexRoute = DirectorioIndexRouteImport.update({
+  id: '/directorio/',
+  path: '/directorio/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DirectorioSlugRoute = DirectorioSlugRouteImport.update({
+  id: '/directorio/$slug',
+  path: '/directorio/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UbicacionesIndexRoute = UbicacionesIndexRouteImport.update({
+  id: '/ubicaciones/',
+  path: '/ubicaciones/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UbicacionesSlugRoute = UbicacionesSlugRouteImport.update({
+  id: '/ubicaciones/$slug',
+  path: '/ubicaciones/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/directorio/$slug': typeof DirectorioSlugRoute
+  '/ubicaciones/$slug': typeof UbicacionesSlugRoute
+  '/directorio/': typeof DirectorioIndexRoute
+  '/ubicaciones/': typeof UbicacionesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/directorio/$slug': typeof DirectorioSlugRoute
+  '/ubicaciones/$slug': typeof UbicacionesSlugRoute
+  '/directorio': typeof DirectorioIndexRoute
+  '/ubicaciones': typeof UbicacionesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/directorio/$slug': typeof DirectorioSlugRoute
+  '/ubicaciones/$slug': typeof UbicacionesSlugRoute
+  '/directorio/': typeof DirectorioIndexRoute
+  '/ubicaciones/': typeof UbicacionesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/directorio/$slug'
+    | '/ubicaciones/$slug'
+    | '/directorio/'
+    | '/ubicaciones/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/directorio/$slug'
+    | '/ubicaciones/$slug'
+    | '/directorio'
+    | '/ubicaciones'
+  id:
+    | '__root__'
+    | '/'
+    | '/directorio/$slug'
+    | '/ubicaciones/$slug'
+    | '/directorio/'
+    | '/ubicaciones/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DirectorioSlugRoute: typeof DirectorioSlugRoute
+  UbicacionesSlugRoute: typeof UbicacionesSlugRoute
+  DirectorioIndexRoute: typeof DirectorioIndexRoute
+  UbicacionesIndexRoute: typeof UbicacionesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +104,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/directorio/': {
+      id: '/directorio/'
+      path: '/directorio'
+      fullPath: '/directorio/'
+      preLoaderRoute: typeof DirectorioIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/directorio/$slug': {
+      id: '/directorio/$slug'
+      path: '/directorio/$slug'
+      fullPath: '/directorio/$slug'
+      preLoaderRoute: typeof DirectorioSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ubicaciones/': {
+      id: '/ubicaciones/'
+      path: '/ubicaciones'
+      fullPath: '/ubicaciones/'
+      preLoaderRoute: typeof UbicacionesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ubicaciones/$slug': {
+      id: '/ubicaciones/$slug'
+      path: '/ubicaciones/$slug'
+      fullPath: '/ubicaciones/$slug'
+      preLoaderRoute: typeof UbicacionesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DirectorioSlugRoute: DirectorioSlugRoute,
+  UbicacionesSlugRoute: UbicacionesSlugRoute,
+  DirectorioIndexRoute: DirectorioIndexRoute,
+  UbicacionesIndexRoute: UbicacionesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
