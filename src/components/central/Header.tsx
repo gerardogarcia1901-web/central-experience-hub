@@ -94,9 +94,9 @@ export function Header() {
       )}
     >
       <div className="container-central flex h-16 items-center justify-between gap-6 md:h-20">
-        <div className="flex items-center gap-10">
+        <div className="flex items-center gap-8">
           <Wordmark />
-          <nav aria-label="Navegación principal" className="hidden items-center gap-6 2xl:flex">
+          <nav aria-label="Navegación principal" className="hidden items-center gap-5 2xl:flex">
             {mainNav.map((item) => (
               <Link
                 key={item.to}
