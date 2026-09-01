@@ -10,14 +10,34 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EventosRouteImport } from './routes/eventos'
+import { Route as GastronomiaRouteImport } from './routes/gastronomia'
+import { Route as PromocionesRouteImport } from './routes/promociones'
 import { Route as DirectorioIndexRouteImport } from './routes/directorio.index'
 import { Route as DirectorioSlugRouteImport } from './routes/directorio.$slug'
+import { Route as NovedadesIndexRouteImport } from './routes/novedades.index'
+import { Route as NovedadesSlugRouteImport } from './routes/novedades.$slug'
 import { Route as UbicacionesIndexRouteImport } from './routes/ubicaciones.index'
 import { Route as UbicacionesSlugRouteImport } from './routes/ubicaciones.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventosRoute = EventosRouteImport.update({
+  id: '/eventos',
+  path: '/eventos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GastronomiaRoute = GastronomiaRouteImport.update({
+  id: '/gastronomia',
+  path: '/gastronomia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PromocionesRoute = PromocionesRouteImport.update({
+  id: '/promociones',
+  path: '/promociones',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DirectorioIndexRoute = DirectorioIndexRouteImport.update({
@@ -28,6 +48,16 @@ const DirectorioIndexRoute = DirectorioIndexRouteImport.update({
 const DirectorioSlugRoute = DirectorioSlugRouteImport.update({
   id: '/directorio/$slug',
   path: '/directorio/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NovedadesIndexRoute = NovedadesIndexRouteImport.update({
+  id: '/novedades/',
+  path: '/novedades/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NovedadesSlugRoute = NovedadesSlugRouteImport.update({
+  id: '/novedades/$slug',
+  path: '/novedades/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UbicacionesIndexRoute = UbicacionesIndexRouteImport.update({
@@ -43,55 +73,90 @@ const UbicacionesSlugRoute = UbicacionesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/eventos': typeof EventosRoute
+  '/gastronomia': typeof GastronomiaRoute
+  '/promociones': typeof PromocionesRoute
   '/directorio/$slug': typeof DirectorioSlugRoute
+  '/novedades/$slug': typeof NovedadesSlugRoute
   '/ubicaciones/$slug': typeof UbicacionesSlugRoute
   '/directorio/': typeof DirectorioIndexRoute
+  '/novedades/': typeof NovedadesIndexRoute
   '/ubicaciones/': typeof UbicacionesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/eventos': typeof EventosRoute
+  '/gastronomia': typeof GastronomiaRoute
+  '/promociones': typeof PromocionesRoute
   '/directorio/$slug': typeof DirectorioSlugRoute
+  '/novedades/$slug': typeof NovedadesSlugRoute
   '/ubicaciones/$slug': typeof UbicacionesSlugRoute
   '/directorio': typeof DirectorioIndexRoute
+  '/novedades': typeof NovedadesIndexRoute
   '/ubicaciones': typeof UbicacionesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/eventos': typeof EventosRoute
+  '/gastronomia': typeof GastronomiaRoute
+  '/promociones': typeof PromocionesRoute
   '/directorio/$slug': typeof DirectorioSlugRoute
+  '/novedades/$slug': typeof NovedadesSlugRoute
   '/ubicaciones/$slug': typeof UbicacionesSlugRoute
   '/directorio/': typeof DirectorioIndexRoute
+  '/novedades/': typeof NovedadesIndexRoute
   '/ubicaciones/': typeof UbicacionesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/eventos'
+    | '/gastronomia'
+    | '/promociones'
     | '/directorio/$slug'
+    | '/novedades/$slug'
     | '/ubicaciones/$slug'
     | '/directorio/'
+    | '/novedades/'
     | '/ubicaciones/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/eventos'
+    | '/gastronomia'
+    | '/promociones'
     | '/directorio/$slug'
+    | '/novedades/$slug'
     | '/ubicaciones/$slug'
     | '/directorio'
+    | '/novedades'
     | '/ubicaciones'
   id:
     | '__root__'
     | '/'
+    | '/eventos'
+    | '/gastronomia'
+    | '/promociones'
     | '/directorio/$slug'
+    | '/novedades/$slug'
     | '/ubicaciones/$slug'
     | '/directorio/'
+    | '/novedades/'
     | '/ubicaciones/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EventosRoute: typeof EventosRoute
+  GastronomiaRoute: typeof GastronomiaRoute
+  PromocionesRoute: typeof PromocionesRoute
   DirectorioSlugRoute: typeof DirectorioSlugRoute
+  NovedadesSlugRoute: typeof NovedadesSlugRoute
   UbicacionesSlugRoute: typeof UbicacionesSlugRoute
   DirectorioIndexRoute: typeof DirectorioIndexRoute
+  NovedadesIndexRoute: typeof NovedadesIndexRoute
   UbicacionesIndexRoute: typeof UbicacionesIndexRoute
 }
 
@@ -102,6 +167,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/eventos': {
+      id: '/eventos'
+      path: '/eventos'
+      fullPath: '/eventos'
+      preLoaderRoute: typeof EventosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gastronomia': {
+      id: '/gastronomia'
+      path: '/gastronomia'
+      fullPath: '/gastronomia'
+      preLoaderRoute: typeof GastronomiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/promociones': {
+      id: '/promociones'
+      path: '/promociones'
+      fullPath: '/promociones'
+      preLoaderRoute: typeof PromocionesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/directorio/': {
@@ -116,6 +202,20 @@ declare module '@tanstack/react-router' {
       path: '/directorio/$slug'
       fullPath: '/directorio/$slug'
       preLoaderRoute: typeof DirectorioSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/novedades/': {
+      id: '/novedades/'
+      path: '/novedades'
+      fullPath: '/novedades/'
+      preLoaderRoute: typeof NovedadesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/novedades/$slug': {
+      id: '/novedades/$slug'
+      path: '/novedades/$slug'
+      fullPath: '/novedades/$slug'
+      preLoaderRoute: typeof NovedadesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ubicaciones/': {
@@ -137,9 +237,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EventosRoute: EventosRoute,
+  GastronomiaRoute: GastronomiaRoute,
+  PromocionesRoute: PromocionesRoute,
   DirectorioSlugRoute: DirectorioSlugRoute,
+  NovedadesSlugRoute: NovedadesSlugRoute,
   UbicacionesSlugRoute: UbicacionesSlugRoute,
   DirectorioIndexRoute: DirectorioIndexRoute,
+  NovedadesIndexRoute: NovedadesIndexRoute,
   UbicacionesIndexRoute: UbicacionesIndexRoute,
 }
 export const routeTree = rootRouteImport

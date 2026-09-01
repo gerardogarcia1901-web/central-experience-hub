@@ -8,16 +8,16 @@ import { locations } from "@/data/locations";
 import modaImg from "@/assets/moda.jpg";
 
 interface DirectorioSearch {
-  categoria?: string;
-  ubicacion?: string;
-  q?: string;
+  categoria?: string | undefined;
+  ubicacion?: string | undefined;
+  q?: string | undefined;
 }
 
 export const Route = createFileRoute("/directorio/")({
   validateSearch: (search: Record<string, unknown>): DirectorioSearch => ({
-    categoria: typeof search.categoria === "string" ? search.categoria : undefined,
-    ubicacion: typeof search.ubicacion === "string" ? search.ubicacion : undefined,
-    q: typeof search.q === "string" ? search.q : undefined,
+    categoria: typeof search["categoria"] === "string" ? search["categoria"] : undefined,
+    ubicacion: typeof search["ubicacion"] === "string" ? search["ubicacion"] : undefined,
+    q: typeof search["q"] === "string" ? search["q"] : undefined,
   }),
   head: () => ({
     meta: [
@@ -36,10 +36,10 @@ export const Route = createFileRoute("/directorio/")({
 
 function DirectorioPage() {
   const search = Route.useSearch();
-  const navigate = useNavigate({ from: "/directorio" });
+  const navigate = useNavigate({ from: "/directorio/" });
 
-  const setSearch = (patch: Partial<DirectorioSearch>) =>
-    navigate({ search: (prev) => ({ ...prev, ...patch }), replace: true });
+  const setSearch = (patch: DirectorioSearch) =>
+    navigate({ search: (prev: DirectorioSearch) => ({ ...prev, ...patch }), replace: true });
 
   const categoria = search.categoria ?? "todas";
   const ubicacion = search.ubicacion ?? "todas";
