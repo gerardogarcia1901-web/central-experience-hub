@@ -101,7 +101,7 @@ export function Header() {
               <Link
                 key={item.to}
                 to={item.to}
-                className="eyebrow text-foreground/70 transition-colors hover:text-foreground"
+                className="eyebrow whitespace-nowrap text-foreground/70 transition-colors hover:text-foreground"
                 activeProps={{ className: "text-foreground" }}
               >
                 {item.label}
