@@ -18,16 +18,7 @@ export function Footer() {
 
   return (
     <footer className="relative isolate overflow-hidden bg-ink text-ink-foreground">
-      <div className="container-central relative px-6 pb-28 pt-16 md:px-12 md:pb-32 md:pt-24 lg:pb-40 lg:pt-32">
-        {/* Marca de agua tipográfica sutil, siempre completa */}
-        <div
-          className="pointer-events-none absolute inset-x-6 bottom-6 select-none overflow-hidden whitespace-nowrap text-right opacity-[0.03] md:inset-x-12 md:bottom-8 lg:bottom-10"
-          aria-hidden
-        >
-          <span className="wordmark inline-block text-[clamp(3.5rem,10vw,10rem)] leading-none">
-            CENTRAL
-          </span>
-        </div>
+      <div className="container-central relative px-6 py-16 md:px-12 md:py-24 lg:py-32">
 
         <div className="relative z-10">
           {/* Sección superior */}
