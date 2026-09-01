@@ -129,6 +129,16 @@ export function Footer() {
               El Salvador
             </p>
           </div>
+
+          {/* Marca de agua tipográfica sutil, siempre completa */}
+          <div
+            className="pointer-events-none mt-10 select-none overflow-hidden text-right opacity-[0.03] md:mt-14"
+            aria-hidden
+          >
+            <span className="wordmark inline-block text-[clamp(2.5rem,9vw,10rem)] leading-none">
+              CENTRAL
+            </span>
+          </div>
         </div>
       </div>
     </footer>
