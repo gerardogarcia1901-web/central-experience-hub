@@ -6,6 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { PageHero, Section, SectionHeading, StatusBadge } from "@/components/central/primitives";
 import { EventCard, NewsCard, PromotionCard, StoreCard } from "@/components/central/cards";
 import { CtaSection } from "@/components/central/CtaSection";
+import { BackButton } from "@/components/central/BackButton";
 import { getLocation, locations, statusLabels } from "@/data/locations";
 import { articles, events, promotions, stores } from "@/data/catalog";
 
@@ -62,6 +63,7 @@ function LocationPage() {
         breadcrumbs={[{ label: "Centros", to: "/ubicaciones" }, { label: location.shortName }]}
       >
         <div className="flex flex-wrap items-center gap-4">
+          <BackButton fallbackTo="/ubicaciones" className="text-ink-foreground" />
           <StatusBadge status={location.status} className="bg-white/10" />
           <span className="text-sm text-ink-foreground/70">{location.openingInfo}</span>
           {location.siteUrl && (
