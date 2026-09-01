@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ArrendamientosRouteImport } from './routes/arrendamientos'
+import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as EventosRouteImport } from './routes/eventos'
 import { Route as GastronomiaRouteImport } from './routes/gastronomia'
 import { Route as PromocionesRouteImport } from './routes/promociones'
@@ -23,6 +25,16 @@ import { Route as UbicacionesSlugRouteImport } from './routes/ubicaciones.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArrendamientosRoute = ArrendamientosRouteImport.update({
+  id: '/arrendamientos',
+  path: '/arrendamientos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactoRoute = ContactoRouteImport.update({
+  id: '/contacto',
+  path: '/contacto',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EventosRoute = EventosRouteImport.update({
@@ -73,6 +85,8 @@ const UbicacionesSlugRoute = UbicacionesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/arrendamientos': typeof ArrendamientosRoute
+  '/contacto': typeof ContactoRoute
   '/eventos': typeof EventosRoute
   '/gastronomia': typeof GastronomiaRoute
   '/promociones': typeof PromocionesRoute
@@ -85,6 +99,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/arrendamientos': typeof ArrendamientosRoute
+  '/contacto': typeof ContactoRoute
   '/eventos': typeof EventosRoute
   '/gastronomia': typeof GastronomiaRoute
   '/promociones': typeof PromocionesRoute
@@ -98,6 +114,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/arrendamientos': typeof ArrendamientosRoute
+  '/contacto': typeof ContactoRoute
   '/eventos': typeof EventosRoute
   '/gastronomia': typeof GastronomiaRoute
   '/promociones': typeof PromocionesRoute
@@ -112,6 +130,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/arrendamientos'
+    | '/contacto'
     | '/eventos'
     | '/gastronomia'
     | '/promociones'
@@ -124,6 +144,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/arrendamientos'
+    | '/contacto'
     | '/eventos'
     | '/gastronomia'
     | '/promociones'
@@ -136,6 +158,8 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/arrendamientos'
+    | '/contacto'
     | '/eventos'
     | '/gastronomia'
     | '/promociones'
@@ -149,6 +173,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ArrendamientosRoute: typeof ArrendamientosRoute
+  ContactoRoute: typeof ContactoRoute
   EventosRoute: typeof EventosRoute
   GastronomiaRoute: typeof GastronomiaRoute
   PromocionesRoute: typeof PromocionesRoute
@@ -167,6 +193,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/arrendamientos': {
+      id: '/arrendamientos'
+      path: '/arrendamientos'
+      fullPath: '/arrendamientos'
+      preLoaderRoute: typeof ArrendamientosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacto': {
+      id: '/contacto'
+      path: '/contacto'
+      fullPath: '/contacto'
+      preLoaderRoute: typeof ContactoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/eventos': {
@@ -237,6 +277,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ArrendamientosRoute: ArrendamientosRoute,
+  ContactoRoute: ContactoRoute,
   EventosRoute: EventosRoute,
   GastronomiaRoute: GastronomiaRoute,
   PromocionesRoute: PromocionesRoute,
