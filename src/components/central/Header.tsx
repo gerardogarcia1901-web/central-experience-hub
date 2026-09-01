@@ -96,7 +96,7 @@ export function Header() {
       <div className="container-central flex h-16 items-center justify-between gap-6 md:h-20">
         <div className="flex items-center gap-10">
           <Wordmark />
-          <nav aria-label="Navegación principal" className="hidden items-center gap-7 xl:flex">
+          <nav aria-label="Navegación principal" className="hidden items-center gap-6 2xl:flex">
             {mainNav.map((item) => (
               <Link
                 key={item.to}
@@ -159,7 +159,7 @@ export function Header() {
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <button
-                className="inline-flex size-9 items-center justify-center rounded-full transition-colors hover:bg-foreground/10 xl:hidden"
+                className="inline-flex size-9 items-center justify-center rounded-full transition-colors hover:bg-foreground/10 2xl:hidden"
                 aria-label="Abrir menú"
               >
                 <Menu className="size-5" />
