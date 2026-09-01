@@ -290,43 +290,37 @@ function Home() {
         </div>
       </Section>
 
-      {/* CONTACTO / VISITA */}
-      <Section tone="ink" className="py-16 md:py-20">
-        <div className="grid gap-12 lg:grid-cols-3">
-          <div>
-            <p className="eyebrow text-ink-foreground/50">Visítanos</p>
-            <h2 className="display-md mt-4 text-3xl">Planifica tu visita</h2>
-            <p className="mt-4 text-sm leading-relaxed text-ink-foreground/70">
-              Consulta horarios, direcciones y cómo llegar a cada uno de nuestros centros comerciales.
-            </p>
-            <Button asChild variant="secondary" className="mt-6 rounded-none eyebrow">
-              <Link to="/ubicaciones">Ver ubicaciones</Link>
+      {/* CIERRE EDITORIAL */}
+      <Section tone="sand" className="relative isolate overflow-hidden py-20 md:py-28 lg:py-36">
+        <div className="absolute inset-0 -z-10 opacity-[0.03]" aria-hidden>
+          <span className="wordmark absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[clamp(5rem,18vw,18rem)]">
+            CENTRAL
+          </span>
+        </div>
+        <div className="relative z-10 mx-auto max-w-4xl text-center">
+          <p className="eyebrow text-muted-foreground">Grupo Galo · El Salvador</p>
+          <h2 className="display-md mt-6 text-4xl md:text-5xl lg:text-6xl">
+            Vive tus momentos en CENTRAL
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+            Descubre el destino comercial más cercano, explora sus marcas, eventos y experiencias. Estamos
+            construyendo nuevos centros para llevar lo mejor de CENTRAL a más ciudades.
+          </p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button asChild size="lg" className="rounded-none px-8 eyebrow">
+              <Link to="/ubicaciones">Encuentra tu CENTRAL</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="rounded-none px-8 eyebrow">
+              <Link to="/contacto">Hablar con nosotros</Link>
             </Button>
           </div>
-          <div>
-            <p className="eyebrow text-ink-foreground/50">Contacto general</p>
-            <ul className="mt-4 space-y-2 text-sm text-ink-foreground/80">
-              <li>
-                <a href={`mailto:${site.email}`} className="hover:underline">{site.email}</a>
-              </li>
-              <li>
-                <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="hover:underline">{site.phone}</a>
-              </li>
-              <li className="text-ink-foreground/55">{site.address}</li>
-            </ul>
-            <Button asChild variant="link" className="mt-4 h-auto p-0 eyebrow text-ink-foreground">
-              <Link to="/contacto">Escríbenos</Link>
-            </Button>
-          </div>
-          <div>
-            <p className="eyebrow text-ink-foreground/50">Síguenos</p>
-            <ul className="mt-4 space-y-2 text-sm text-ink-foreground/80">
-              {site.social.map((s) => (
-                <li key={s.label}>
-                  <a href={s.href} className="hover:underline">{s.label}</a>
-                </li>
-              ))}
-            </ul>
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted-foreground">
+            <a href={`mailto:${site.email}`} className="hover:text-foreground hover:underline">
+              {site.email}
+            </a>
+            <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="hover:text-foreground hover:underline">
+              {site.phone}
+            </a>
           </div>
         </div>
       </Section>

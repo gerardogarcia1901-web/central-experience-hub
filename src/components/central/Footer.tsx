@@ -19,13 +19,6 @@ export function Footer() {
   return (
     <footer className="relative isolate overflow-hidden bg-ink text-ink-foreground">
       <div className="container-central relative px-6 py-16 md:px-12 md:py-24 lg:py-32">
-        {/* Marca de agua tipográfica sutil */}
-        <div
-          className="pointer-events-none absolute -bottom-8 -right-8 select-none whitespace-nowrap opacity-[0.03] md:-bottom-12 md:-right-12"
-          aria-hidden
-        >
-          <span className="wordmark text-[8rem] leading-none md:text-[16rem] lg:text-[24rem]">CENTRAL</span>
-        </div>
 
         <div className="relative z-10">
           {/* Sección superior */}
@@ -135,6 +128,16 @@ export function Footer() {
             <p className="text-xs font-medium uppercase tracking-widest text-ink-foreground/35">
               El Salvador
             </p>
+          </div>
+
+          {/* Marca de agua tipográfica sutil, siempre completa */}
+          <div
+            className="pointer-events-none mt-10 select-none overflow-hidden text-right opacity-[0.03] md:mt-14"
+            aria-hidden
+          >
+            <span className="inline-block font-display text-[clamp(2rem,8vw,9rem)] font-extrabold uppercase leading-none tracking-[0.08em]">
+              CENTRAL
+            </span>
           </div>
         </div>
       </div>
