@@ -37,8 +37,9 @@ function UbicacionesPage() {
           ))}
         </div>
         <p className="mt-12 max-w-2xl text-sm text-muted-foreground">
-          CENTRAL continúa expandiéndose en El Salvador. Nuevas ubicaciones se incorporarán a esta página conforme
-          avancen los proyectos.
+          Cada centro comercial CENTRAL cuenta con su propio sitio web, donde encontrarás su directorio de marcas,
+          horarios, promociones y agenda. CENTRAL continúa expandiéndose en El Salvador y nuevas ubicaciones se
+          incorporarán a esta página conforme avancen los proyectos.
         </p>
       </Section>
       <CtaSection

@@ -1,3 +1,4 @@
+import type React from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, CalendarDays, Clock, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -7,36 +8,58 @@ import { categoryName } from "@/data/catalog";
 import type { Article, CentralEvent, CentralLocation, Promotion, Store } from "@/data/types";
 
 export function LocationCard({ location, size = "default" }: { location: CentralLocation; size?: "default" | "large" }) {
+  const external = Boolean(location.siteUrl);
+  const linkLabel = external
+    ? `Ir al sitio de ${location.shortName}`
+    : location.status === "operativo"
+      ? `Visitar ${location.shortName}`
+      : "Descubrir proyecto";
+
+  const wrap = (className: string, children: React.ReactNode, ariaLabel?: string) =>
+    external ? (
+      <a
+        href={location.siteUrl!}
+        target="_blank"
+        rel="noreferrer"
+        className={className}
+        aria-label={ariaLabel}
+      >
+        {children}
+      </a>
+    ) : (
+      <Link to="/ubicaciones/$slug" params={{ slug: location.slug }} className={className} aria-label={ariaLabel}>
+        {children}
+      </Link>
+    );
+
   return (
     <article className="group relative flex flex-col overflow-hidden bg-card">
-      <Link
-        to="/ubicaciones/$slug"
-        params={{ slug: location.slug }}
-        className="hover-zoom relative block aspect-4/3 overflow-hidden"
-        aria-label={`Ver ${location.name}`}
-      >
-        <img
-          src={location.image}
-          alt={`Vista de ${location.name}`}
-          className="image-cover"
-          loading="lazy"
-          width={1600}
-          height={1100}
-        />
-        <span className="absolute left-5 top-5 bg-background/90 px-3 py-1 eyebrow">{location.department}</span>
-      </Link>
+      {wrap(
+        "hover-zoom relative block aspect-4/3 overflow-hidden",
+        <>
+          <img
+            src={location.image}
+            alt={`Vista de ${location.name}`}
+            className="image-cover"
+            loading="lazy"
+            width={1600}
+            height={1100}
+          />
+          <span className="absolute left-5 top-5 bg-background/90 px-3 py-1 eyebrow">{location.department}</span>
+        </>,
+        `Ver ${location.name}`,
+      )}
       <div className={cn("flex flex-1 flex-col gap-4 border border-t-0 border-border p-6", size === "large" && "p-8")}>
         <StatusBadge status={location.status} className="self-start" />
         <h3 className={cn("display-md", size === "large" ? "text-3xl md:text-4xl" : "text-2xl")}>{location.name}</h3>
         <p className="text-sm leading-relaxed text-muted-foreground">{location.description}</p>
-        <Link
-          to="/ubicaciones/$slug"
-          params={{ slug: location.slug }}
-          className="mt-auto inline-flex items-center gap-2 eyebrow underline-offset-8 transition-all hover:gap-3 hover:underline"
-        >
-          {location.status === "operativo" ? `Visitar ${location.shortName}` : "Descubrir proyecto"}
-          <ArrowUpRight className="size-4" />
-        </Link>
+        {wrap(
+          "mt-auto inline-flex items-center gap-2 eyebrow underline-offset-8 transition-all hover:gap-3 hover:underline",
+          <>
+            {linkLabel}
+            <ArrowUpRight className="size-4" />
+          </>,
+        )}
       </div>
     </article>
   );

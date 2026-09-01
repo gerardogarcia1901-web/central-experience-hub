@@ -21,6 +21,8 @@ export interface CentralLocation {
   city: string;
   department: string;
   status: LocationStatus;
+  /** Sitio web propio de la sucursal. Si existe, las tarjetas enlazan aquí en vez de la ficha interna. */
+  siteUrl: string | null;
   tagline: string;
   description: string;
   longDescription: string;
