@@ -1,111 +1,141 @@
+import { useState } from "react";
 import { Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
+import { toast } from "sonner";
+
 import { legalLinks, mainNav, site } from "@/data/site";
 import { locations, statusLabels } from "@/data/locations";
-import { categories } from "@/data/catalog";
 
 export function Footer() {
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    toast.success("Gracias por suscribirte. Pronto recibirás nuestras novedades.");
+    setEmail("");
+  };
+
   return (
-    <footer className="bg-ink text-ink-foreground">
-      <div className="container-central py-16 md:py-24">
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_2fr]">
-          <div>
-            <p className="wordmark text-3xl md:text-4xl">CENTRAL</p>
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-ink-foreground/60">
-              {site.description}
-            </p>
-            <p className="mt-6 eyebrow text-ink-foreground/40">Una marca de {site.operator}</p>
-          </div>
-
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            <nav aria-label="Explorar">
-              <h2 className="eyebrow text-ink-foreground/40">Explorar</h2>
-              <ul className="mt-5 space-y-3 text-sm">
-                {mainNav.map((item) => (
-                  <li key={item.to}>
-                    <Link to={item.to} className="text-ink-foreground/75 transition-colors hover:text-ink-foreground">
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            <nav aria-label="Centros">
-              <h2 className="eyebrow text-ink-foreground/40">Centros</h2>
-              <ul className="mt-5 space-y-3 text-sm">
-                {locations.map((loc) => (
-                  <li key={loc.slug}>
-                    <Link
-                      to="/ubicaciones/$slug"
-                      params={{ slug: loc.slug }}
-                      className="text-ink-foreground/75 transition-colors hover:text-ink-foreground"
-                    >
-                      {loc.shortName}
-                      <span className="block text-xs text-ink-foreground/40">{statusLabels[loc.status]}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            <nav aria-label="Categorías">
-              <h2 className="eyebrow text-ink-foreground/40">Categorías</h2>
-              <ul className="mt-5 space-y-3 text-sm">
-                {categories.slice(0, 6).map((cat) => (
-                  <li key={cat.slug}>
-                    <Link
-                      to="/directorio"
-                      search={{ categoria: cat.slug }}
-                      className="text-ink-foreground/75 transition-colors hover:text-ink-foreground"
-                    >
-                      {cat.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            <div>
-              <h2 className="eyebrow text-ink-foreground/40">Contacto</h2>
-              <ul className="mt-5 space-y-3 text-sm text-ink-foreground/75">
-                <li>
-                  <a href={`mailto:${site.email}`} className="hover:text-ink-foreground">
-                    {site.email}
-                  </a>
-                </li>
-                <li>
-                  <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="hover:text-ink-foreground">
-                    {site.phone}
-                  </a>
-                </li>
-                <li className="text-ink-foreground/50">{site.address}</li>
-              </ul>
-              <ul className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-xs uppercase tracking-widest text-ink-foreground/60">
-                {site.social.map((s) => (
-                  <li key={s.label}>
-                    <a href={s.href} className="hover:text-ink-foreground">
-                      {s.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+    <footer className="relative isolate overflow-hidden bg-ink text-ink-foreground">
+      <div className="container-central relative px-6 py-16 md:px-12 md:py-24 lg:py-32">
+        {/* Marca de agua tipográfica sutil */}
+        <div
+          className="pointer-events-none absolute -bottom-8 -right-8 select-none whitespace-nowrap opacity-[0.03] md:-bottom-12 md:-right-12"
+          aria-hidden
+        >
+          <span className="wordmark text-[8rem] leading-none md:text-[16rem] lg:text-[24rem]">CENTRAL</span>
         </div>
 
-        <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 text-xs text-ink-foreground/45 md:flex-row md:items-center md:justify-between">
-          <p>
-            © {new Date().getFullYear()} CENTRAL · {site.operator}. Todos los derechos reservados.
-          </p>
-          <ul className="flex flex-wrap gap-x-6 gap-y-2">
-            {legalLinks.map((l) => (
-              <li key={l.label}>
-                <Link to={l.to} className="hover:text-ink-foreground">
+        <div className="relative z-10">
+          {/* Sección superior */}
+          <div className="grid gap-12 md:grid-cols-12">
+            {/* Bloque de marca */}
+            <div className="flex flex-col justify-between md:col-span-4">
+              <div>
+                <p className="wordmark text-4xl text-ink-foreground md:text-5xl">CENTRAL</p>
+                <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink-foreground/55">
+                  {site.description}
+                </p>
+              </div>
+              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
+                {site.social.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    className="text-sm font-medium uppercase tracking-widest text-ink-foreground/45 transition-colors hover:text-ink-foreground"
+                  >
+                    {s.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Columnas de navegación */}
+            <div className="grid gap-10 sm:grid-cols-2 md:col-span-8 lg:grid-cols-3 md:gap-8">
+              <nav aria-label="Centros">
+                <h2 className="eyebrow text-ink-foreground/40">Centros</h2>
+                <ul className="mt-6 space-y-4">
+                  {locations.map((loc) => (
+                    <li key={loc.slug}>
+                      <Link
+                        to="/ubicaciones/$slug"
+                        params={{ slug: loc.slug }}
+                        className="text-base text-ink-foreground/65 transition-colors hover:text-ink-foreground"
+                      >
+                        {loc.shortName}
+                        <span className="block text-xs text-ink-foreground/35">
+                          {statusLabels[loc.status]}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+
+              <nav aria-label="Explorar">
+                <h2 className="eyebrow text-ink-foreground/40">Explorar</h2>
+                <ul className="mt-6 space-y-4">
+                  {mainNav.map((item) => (
+                    <li key={item.to}>
+                      <Link
+                        to={item.to}
+                        className="text-base text-ink-foreground/65 transition-colors hover:text-ink-foreground"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+
+              <div className="sm:col-span-2 lg:col-span-1">
+                <h2 className="eyebrow text-ink-foreground/40">Suscripción</h2>
+                <form onSubmit={handleSubscribe} className="mt-6">
+                  <div className="relative">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Correo electrónico"
+                      className="w-full border-0 border-b border-ink-foreground/15 bg-transparent py-3 pr-10 text-sm text-ink-foreground placeholder:text-ink-foreground/35 focus:border-ink-foreground/50 focus:outline-none"
+                    />
+                    <button
+                      type="submit"
+                      className="absolute right-0 top-1/2 -translate-y-1/2 text-ink-foreground/45 transition-colors hover:text-ink-foreground"
+                      aria-label="Suscribirse"
+                    >
+                      <ArrowRight className="size-5" />
+                    </button>
+                  </div>
+                </form>
+                <p className="mt-4 max-w-xs text-xs leading-relaxed text-ink-foreground/40">
+                  Recibe novedades de próximas aperturas, eventos y promociones de CENTRAL.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Sección inferior integrada */}
+          <div className="mt-16 flex flex-col gap-6 border-t border-ink-foreground/10 pt-8 md:mt-24 md:flex-row md:items-end md:justify-between">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-foreground/45">
+              <span className="italic">
+                © {new Date().getFullYear()} {site.name} por {site.operator}.
+              </span>
+              {legalLinks.map((l) => (
+                <Link
+                  key={l.label}
+                  to={l.to}
+                  className="transition-colors hover:text-ink-foreground"
+                >
                   {l.label}
                 </Link>
-              </li>
-            ))}
-          </ul>
+              ))}
+            </div>
+            <p className="text-xs font-medium uppercase tracking-widest text-ink-foreground/35">
+              El Salvador
+            </p>
+          </div>
         </div>
       </div>
     </footer>
