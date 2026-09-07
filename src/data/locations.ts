@@ -1,6 +1,5 @@
 import sanMiguelImg from "@/assets/loc-san-miguel.jpg";
 import santaRosaImg from "@/assets/loc-santa-rosa.jpg";
-import sonsonateImg from "@/assets/loc-sonsonate.jpg";
 import type { CentralLocation, LocationStatus } from "./types";
 
 export const statusLabels: Record<LocationStatus, string> = {
@@ -93,44 +92,10 @@ export const locations: CentralLocation[] = [
       { label: "Región", value: "La Unión" },
     ],
   },
-  {
-    slug: "sonsonate",
-    name: "CENTRAL Sonsonate",
-    shortName: "Sonsonate",
-    city: "Sonsonate",
-    department: "Sonsonate",
-    status: "en-construccion",
-    siteUrl: null,
-    tagline: "Próxima apertura",
-    description:
-      "El próximo CENTRAL del occidente del país: un destino comercial en construcción para las familias de Sonsonate.",
-    longDescription:
-      "CENTRAL Sonsonate es el nuevo desarrollo de la marca en el occidente salvadoreño. Un centro comercial de plazas abiertas, anclas nacionales y una zona gastronómica pensada como punto de encuentro regional. El proyecto se encuentra en construcción y ya recibe solicitudes de arrendamiento.",
-    image: sonsonateImg,
-    openingInfo: "Apertura estimada: por confirmar",
-    address: "Sonsonate, El Salvador",
-    directions: "Sobre la vía principal de acceso a la ciudad de Sonsonate, con conexión al transporte interurbano.",
-    phone: "+503 2600 0002",
-    email: "sonsonate@central.com.sv",
-    mapsUrl: "https://maps.google.com/?q=Sonsonate+El+Salvador",
-    hours: [{ label: "Horarios", value: "Se anunciarán previo a la apertura" }],
-    amenities: [
-      { label: "Plazas abiertas", description: "Áreas verdes, sombra natural y espacios para eventos." },
-      { label: "Zona gastronómica", description: "Restaurantes y cafés con terrazas." },
-      { label: "Anclas comerciales", description: "Locales de gran formato para marcas nacionales." },
-      { label: "Estacionamiento amplio", description: "Acceso vehicular directo y espacios a nivel." },
-    ],
-    parking: "Estacionamiento proyectado para 350 vehículos.",
-    stats: [
-      { label: "Locales proyectados", value: "60" },
-      { label: "Área comercial", value: "14,000 m²" },
-      { label: "Etapa", value: "En construcción" },
-      { label: "Región", value: "Sonsonate" },
-    ],
-  },
 ];
 
 export const getLocation = (slug: string) => locations.find((l) => l.slug === slug);
 
 export const locationName = (slug: string) =>
   locations.find((l) => l.slug === slug)?.shortName ?? slug;
+
