@@ -1,20 +1,51 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, MapPin, Search, Globe, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Clock3, Globe, Menu, Search, X } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { mainNav } from "@/data/site";
 import { locations, statusLabels } from "@/data/locations";
 import { stores } from "@/data/catalog";
 import { cn } from "@/lib/utils";
+
+const menuGroups = [
+  {
+    label: "Explorar",
+    links: [
+      { label: "Inicio", to: "/" },
+      { label: "Eventos", to: "/eventos" },
+      { label: "Promociones", to: "/promociones" },
+      { label: "Novedades", to: "/novedades" },
+    ],
+  },
+  {
+    label: "Descubre",
+    links: [
+      { label: "Marcas y tiendas", to: "/directorio" },
+      { label: "Gastronomía", to: "/gastronomia" },
+      { label: "Directorio completo", to: "/directorio" },
+    ],
+  },
+  {
+    label: "Centros",
+    links: [
+      { label: "Todos los centros", to: "/ubicaciones" },
+      ...locations.map((location) => ({
+        label: location.shortName,
+        to: `/ubicaciones/${location.slug}`,
+      })),
+    ],
+  },
+  {
+    label: "Conecta",
+    links: [
+      { label: "Planifica tu visita", to: "/ubicaciones" },
+      { label: "Arrendamientos", to: "/arrendamientos" },
+      { label: "Contacto", to: "/contacto" },
+    ],
+  },
+] as const;
 
 function Wordmark({ className }: { className?: string }) {
   return (
@@ -33,12 +64,14 @@ function SearchDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button
-          className="inline-flex size-9 items-center justify-center rounded-full transition-colors hover:bg-foreground/10"
+        <Button
+          variant="ghost"
+          size="icon"
+          className="rounded-full text-ink-foreground hover:bg-ink-foreground/10 hover:text-ink-foreground"
           aria-label="Buscar"
         >
           <Search className="size-4" />
-        </button>
+        </Button>
       </DialogTrigger>
       <DialogContent className="top-24 max-w-2xl translate-y-0 rounded-none border-border p-0">
         <DialogHeader className="border-b px-6 py-4">
@@ -76,139 +109,103 @@ function SearchDialog() {
 }
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-500",
-        scrolled ? "bg-background/95 backdrop-blur border-b border-border" : "bg-background border-b border-transparent",
-      )}
-    >
-      <div className="container-central flex h-16 items-center justify-between gap-6 md:h-20">
-        <div className="flex items-center gap-8">
-          <Wordmark />
-          <nav aria-label="Navegación principal" className="hidden items-center gap-5 2xl:flex">
-            {mainNav.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                className="eyebrow whitespace-nowrap text-foreground/70 transition-colors hover:text-foreground"
-                activeProps={{ className: "text-foreground" }}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
+    <header className="sticky top-0 z-50 w-full border-b border-ink-foreground/15 bg-ink text-ink-foreground">
+      <div className="container-central relative flex h-20 items-center justify-between md:h-24">
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger asChild>
+            <Button
+              variant="ghost"
+              className="h-auto gap-3 rounded-none px-0 text-ink-foreground hover:bg-transparent hover:text-ink-foreground/70"
+              aria-label="Abrir menú"
+            >
+              <Menu className="size-6" />
+              <span className="hidden text-sm font-medium md:inline">Menú</span>
+            </Button>
+          </SheetTrigger>
 
-        <div className="flex items-center gap-1 md:gap-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button className="hidden items-center gap-2 rounded-full px-3 py-2 eyebrow transition-colors hover:bg-foreground/10 md:inline-flex">
-                <MapPin className="size-4" />
-                Ubicaciones
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-72 rounded-none">
-              {locations.map((loc) => (
-                <DropdownMenuItem key={loc.slug} asChild>
-                  <Link to="/ubicaciones/$slug" params={{ slug: loc.slug }} className="flex flex-col items-start gap-0.5 py-3">
-                    <span className="font-display text-sm font-semibold uppercase tracking-wide">{loc.shortName}</span>
-                    <span className="text-xs text-muted-foreground">{statusLabels[loc.status]}</span>
-                  </Link>
-                </DropdownMenuItem>
-              ))}
-              <DropdownMenuItem asChild>
-                <Link to="/ubicaciones" className="py-3 text-xs uppercase tracking-widest">
-                  Ver todos los centros
+          <SheetContent
+            side="top"
+            className="h-dvh w-full overflow-y-auto border-0 bg-ink/90 p-0 text-ink-foreground backdrop-blur-xl [&>button]:hidden"
+          >
+            <div className="min-h-dvh">
+              <div className="container-central relative flex h-20 items-center justify-between border-b border-ink-foreground/15 md:h-24">
+                <Button
+                  variant="ghost"
+                  onClick={() => setOpen(false)}
+                  className="group h-auto gap-3 rounded-none px-0 text-ink-foreground hover:bg-transparent hover:text-ink-foreground/70"
+                  aria-label="Cerrar menú"
+                >
+                  <X className="size-6 transition-transform duration-500 group-hover:rotate-90" />
+                  <span className="hidden text-sm font-medium md:inline">Cerrar</span>
+                </Button>
+                <Wordmark className="absolute left-1/2 -translate-x-1/2 text-lg md:text-2xl" />
+                <Link
+                  to="/ubicaciones"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-2 text-sm font-medium transition-opacity hover:opacity-70"
+                >
+                  <Clock3 className="size-5" />
+                  <span className="hidden sm:inline">Horarios</span>
                 </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <SearchDialog />
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button
-                className="hidden size-9 items-center justify-center rounded-full transition-colors hover:bg-foreground/10 md:inline-flex"
-                aria-label="Seleccionar idioma"
-              >
-                <Globe className="size-4" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="rounded-none">
-              <DropdownMenuItem>Español</DropdownMenuItem>
-              <DropdownMenuItem disabled>English (próximamente)</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <Button asChild size="sm" className="hidden rounded-none px-5 eyebrow lg:inline-flex">
-            <Link to="/contacto">Contacto</Link>
-          </Button>
-
-          <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
-              <button
-                className="inline-flex size-9 items-center justify-center rounded-full transition-colors hover:bg-foreground/10 2xl:hidden"
-                aria-label="Abrir menú"
-              >
-                <Menu className="size-5" />
-              </button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-full border-l-0 bg-ink p-0 text-ink-foreground sm:max-w-md [&>button]:hidden">
-              <div className="flex h-16 items-center justify-between px-6">
-                <span className="wordmark text-lg">CENTRAL</span>
-                <button onClick={() => setOpen(false)} aria-label="Cerrar menú" className="p-2">
-                  <X className="size-5" />
-                </button>
               </div>
-              <nav aria-label="Navegación móvil" className="flex flex-col px-6 pt-6">
-                {mainNav.map((item) => (
-                  <Link
-                    key={item.to}
-                    to={item.to}
-                    onClick={() => setOpen(false)}
-                    className="display-md border-b border-white/10 py-4 text-[1.6rem] text-ink-foreground/90 transition-colors hover:text-ink-foreground"
+
+              <nav
+                aria-label="Navegación principal"
+                className="container-central grid gap-x-10 gap-y-12 py-12 sm:grid-cols-2 md:py-16 lg:grid-cols-4 lg:py-24"
+              >
+                {menuGroups.map((group, groupIndex) => (
+                  <section
+                    key={group.label}
+                    className="fade-up"
+                    style={{ animationDelay: `${groupIndex * 70}ms` }}
                   >
-                    {item.label}
-                  </Link>
+                    <h2 className="eyebrow border-b border-ink-foreground/15 pb-4 text-ink-foreground/45">
+                      {group.label}
+                    </h2>
+                    <ul className="mt-6 space-y-4">
+                      {group.links.map((item) => (
+                        <li key={`${group.label}-${item.label}`}>
+                          <Link
+                            to={item.to}
+                            onClick={() => setOpen(false)}
+                            className="font-display text-lg font-medium text-ink-foreground/90 transition-colors hover:text-highlight md:text-xl"
+                            activeProps={{ className: "text-highlight" }}
+                          >
+                            {item.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
                 ))}
               </nav>
-              <div className="px-6 pt-8">
-                <p className="eyebrow text-ink-foreground/50">Nuestros centros</p>
-                <div className="mt-4 space-y-3">
-                  {locations.map((loc) => (
-                    <Link
-                      key={loc.slug}
-                      to="/ubicaciones/$slug"
-                      params={{ slug: loc.slug }}
-                      onClick={() => setOpen(false)}
-                      className="block border border-white/15 px-4 py-3"
-                    >
-                      <span className="block text-sm font-semibold uppercase tracking-wide">{loc.shortName}</span>
-                      <span className="text-xs text-ink-foreground/60">{statusLabels[loc.status]}</span>
-                    </Link>
-                  ))}
+
+              <div className="container-central flex flex-wrap items-center justify-between gap-5 border-t border-ink-foreground/15 py-6">
+                <div className="flex items-center gap-2">
+                  <SearchDialog />
+                  <span className="text-sm text-ink-foreground/65">Buscar en CENTRAL</span>
                 </div>
-                <Button asChild variant="secondary" className="mt-6 w-full rounded-none">
-                  <Link to="/contacto" onClick={() => setOpen(false)}>
-                    Contacto
-                  </Link>
-                </Button>
+                <div className="flex items-center gap-2 text-xs text-ink-foreground/45">
+                  <Globe className="size-4" />
+                  Español
+                </div>
               </div>
-            </SheetContent>
-          </Sheet>
-        </div>
+            </div>
+          </SheetContent>
+        </Sheet>
+
+        <Wordmark className="absolute left-1/2 -translate-x-1/2 text-lg md:text-2xl" />
+
+        <Link
+          to="/ubicaciones"
+          className="flex items-center gap-2 text-sm font-medium transition-opacity hover:opacity-70"
+        >
+          <Clock3 className="size-5" />
+          <span className="hidden sm:inline">Horarios</span>
+        </Link>
       </div>
     </header>
   );
