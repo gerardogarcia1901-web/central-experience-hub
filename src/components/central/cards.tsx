@@ -8,7 +8,8 @@ import { categoryName } from "@/data/catalog";
 import type { Article, CentralEvent, CentralLocation, Promotion, Store } from "@/data/types";
 
 export function LocationCard({ location, size = "default" }: { location: CentralLocation; size?: "compact" | "default" | "large" }) {
-  const external = Boolean(location.siteUrl);
+  const locationSiteUrl = location.siteUrl;
+  const external = Boolean(locationSiteUrl);
   const linkLabel = external
     ? `Ir al sitio de ${location.shortName}`
     : location.status === "operativo"
@@ -18,7 +19,7 @@ export function LocationCard({ location, size = "default" }: { location: Central
   const wrap = (className: string, children: React.ReactNode, ariaLabel?: string) =>
     external ? (
       <a
-        href={location.siteUrl!}
+        href={locationSiteUrl ?? "/ubicaciones"}
         target="_blank"
         rel="noreferrer"
         className={className}
