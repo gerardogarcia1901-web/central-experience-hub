@@ -16,7 +16,7 @@ export const homeModules: { id: HomeModuleId; enabled: boolean; order: number }[
   { id: "locations", enabled: true, order: 1 },
   { id: "discovery", enabled: true, order: 2 },
   { id: "highlights", enabled: true, order: 3 },
-  { id: "experiences", enabled: true, order: 4 },
+  { id: "experiences", enabled: false, order: 4 },
   { id: "visit", enabled: true, order: 5 },
   { id: "leasing", enabled: true, order: 6 },
 ];

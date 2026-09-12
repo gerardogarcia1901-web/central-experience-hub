@@ -263,11 +263,11 @@ function VisitSection() {
   ];
 
   return (
-    <section className="border-b border-border bg-background py-16 md:py-20">
-      <div className="container-central grid gap-10 lg:grid-cols-[0.8fr_1.7fr] lg:items-center">
+    <section className="border-b border-border bg-background py-12 md:py-16">
+      <div className="container-central grid gap-8 lg:grid-cols-[0.8fr_1.7fr] lg:items-center">
         <div>
           <p className="eyebrow text-muted-foreground">Información útil</p>
-          <h2 className="display-md mt-4">Visita CENTRAL</h2>
+          <h2 className="display-md mt-4">Planifica tu visita</h2>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
             Todo lo necesario para planificar tu próxima visita, sin complicaciones.
           </p>
@@ -277,12 +277,12 @@ function VisitSection() {
             <Link
               key={item.label}
               to={item.to}
-              className="group min-h-40 border-b border-r border-border p-5 transition-colors hover:bg-muted md:p-6"
+              className="group min-h-36 border-b border-r border-border p-5 transition-colors hover:bg-muted md:p-6"
             >
               <item.icon className="size-5 text-muted-foreground" aria-hidden />
-              <h3 className="mt-8 font-display text-base font-bold uppercase">{item.label}</h3>
+               <h3 className="mt-6 font-display text-base font-bold uppercase">{item.label}</h3>
               <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{item.description}</p>
-              <ArrowRight className="mt-5 size-4 transition-transform group-hover:translate-x-1" aria-hidden />
+               <ArrowRight className="mt-4 size-4 transition-transform group-hover:translate-x-1" aria-hidden />
             </Link>
           ))}
         </div>
@@ -293,7 +293,7 @@ function VisitSection() {
 
 function LeasingSection() {
   return (
-    <section className="bg-sand py-12 md:py-16">
+    <section className="bg-sand py-10 md:py-12">
       <div className="container-central flex flex-col gap-7 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="eyebrow text-muted-foreground">Oportunidades comerciales</p>
@@ -303,7 +303,7 @@ function LeasingSection() {
           </p>
         </div>
         <Button asChild size="lg" className="shrink-0 rounded-none px-7 eyebrow">
-          <Link to="/arrendamientos">Conoce nuestras opciones <ArrowRight /></Link>
+          <Link to="/arrendamientos">Conoce nuestras opciones de arrendamiento <ArrowRight /></Link>
         </Button>
       </div>
     </section>
