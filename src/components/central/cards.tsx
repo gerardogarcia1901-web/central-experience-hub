@@ -7,8 +7,9 @@ import { locationName } from "@/data/locations";
 import { categoryName } from "@/data/catalog";
 import type { Article, CentralEvent, CentralLocation, Promotion, Store } from "@/data/types";
 
-export function LocationCard({ location, size = "default" }: { location: CentralLocation; size?: "default" | "large" }) {
-  const external = Boolean(location.siteUrl);
+export function LocationCard({ location, size = "default" }: { location: CentralLocation; size?: "compact" | "default" | "large" }) {
+  const locationSiteUrl = location.siteUrl;
+  const external = Boolean(locationSiteUrl);
   const linkLabel = external
     ? `Ir al sitio de ${location.shortName}`
     : location.status === "operativo"
@@ -18,7 +19,7 @@ export function LocationCard({ location, size = "default" }: { location: Central
   const wrap = (className: string, children: React.ReactNode, ariaLabel?: string) =>
     external ? (
       <a
-        href={location.siteUrl!}
+        href={locationSiteUrl ?? "/ubicaciones"}
         target="_blank"
         rel="noreferrer"
         className={className}
@@ -35,7 +36,7 @@ export function LocationCard({ location, size = "default" }: { location: Central
   return (
     <article className="group relative flex flex-col overflow-hidden bg-card">
       {wrap(
-        "hover-zoom relative block aspect-4/3 overflow-hidden",
+        cn("hover-zoom relative block overflow-hidden", size === "compact" ? "aspect-[16/9]" : "aspect-4/3"),
         <>
           <img
             src={location.image}
@@ -51,7 +52,7 @@ export function LocationCard({ location, size = "default" }: { location: Central
       )}
       <div className={cn("flex flex-1 flex-col gap-4 border border-t-0 border-border p-6", size === "large" && "p-8")}>
         <StatusBadge status={location.status} className="self-start" />
-        <h3 className={cn("display-md", size === "large" ? "text-3xl md:text-4xl" : "text-2xl")}>{location.name}</h3>
+        <h3 className={cn("display-md", size === "large" ? "text-3xl md:text-4xl" : size === "compact" ? "text-xl md:text-2xl" : "text-2xl")}>{location.name}</h3>
         <p className="text-sm leading-relaxed text-muted-foreground">{location.description}</p>
         {wrap(
           "mt-auto inline-flex items-center gap-2 eyebrow underline-offset-8 transition-all hover:gap-3 hover:underline",
