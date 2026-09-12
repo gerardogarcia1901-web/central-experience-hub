@@ -5,4 +5,4 @@
 - [x] Retirar de la Home el módulo visual redundante de experiencias.
 - [x] Compactar y renombrar Planifica tu visita.
 - [x] Ajustar el CTA compacto de arrendamientos.
-- [ ] Validar la Home en escritorio y móvil, incluyendo enlaces.
+- [x] Validar la Home en escritorio y móvil, incluyendo enlaces.
