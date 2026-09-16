@@ -84,9 +84,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "CENTRAL, la red de centros comerciales de Grupo Galo en El Salvador: tiendas, gastronomía, eventos y experiencias.",
+          "CENTRAL, la red de centros comerciales en El Salvador: tiendas, gastronomía, eventos y experiencias.",
       },
-      { name: "author", content: "CENTRAL · Grupo Galo" },
+      { name: "author", content: "CENTRAL" },
       { property: "og:title", content: "CENTRAL | Centros comerciales de El Salvador" },
       {
         property: "og:description",
