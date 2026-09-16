@@ -283,17 +283,17 @@ export const events: CentralEvent[] = [
 
 export const articles: Article[] = [
   {
-    slug: "central-crece-en-oriente",
-    title: "CENTRAL crece en el oriente del país",
+    slug: "momentos-que-compartimos",
+    title: "Momentos que compartimos en CENTRAL",
     summary:
-      "La marca confirma su segundo desarrollo comercial y proyecta nuevas ubicaciones en El Salvador.",
+      "Activaciones, encuentros y experiencias que hacen de cada visita un plan distinto.",
     body: [
-      "CENTRAL continúa consolidando su presencia en el oriente salvadoreño con el desarrollo de su segundo centro comercial en Santa Rosa de Lima, un proyecto pensado para atender a las familias de La Unión y municipios vecinos.",
-      "El modelo de la marca combina plazas abiertas, mezcla comercial equilibrada y espacios diseñados para el encuentro. Cada desarrollo se adapta a la escala de su ciudad, manteniendo los mismos estándares de servicio, seguridad y experiencia.",
-      "Con esta expansión, CENTRAL busca convertirse en la red de destinos comerciales de referencia del país, con una plataforma preparada para incorporar nuevas ubicaciones en los próximos años.",
+      "En CENTRAL cada semana trae algo nuevo: música en vivo, ferias de emprendedores, actividades para los más pequeños y encuentros que convierten el centro comercial en un punto de reunión.",
+      "Nuestros espacios abiertos están pensados para que las familias y amigos compartan, celebren y disfruten, con una programación que se renueva constantemente en cada ubicación.",
+      "La experiencia CENTRAL se construye con las personas que nos visitan: sus historias y momentos son el corazón de la marca.",
     ],
     image: santaRosaImg,
-    category: "Expansión",
+    category: "Comunidad",
     date: "2026-08-20",
     displayDate: "20 de agosto, 2026",
     author: "Equipo CENTRAL",

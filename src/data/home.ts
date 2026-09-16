@@ -58,7 +58,7 @@ export const discoveryLinks = [
 export const homeHighlights = [
   { type: "Promoción", slug: "temporada-central", source: "promotion" },
   { type: "Evento", slug: "festival-gastronomico", source: "event" },
-  { type: "Novedad", slug: "central-crece-en-oriente", source: "article" },
+  { type: "Novedad", slug: "momentos-que-compartimos", source: "article" },
   { type: "Novedad", slug: "terraza-gastronomica", source: "article" },
 ] as const;
 
