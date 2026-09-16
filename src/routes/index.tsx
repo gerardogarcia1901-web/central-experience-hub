@@ -23,7 +23,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Descubre los centros comerciales CENTRAL de Grupo Galo: tiendas, gastronomía, eventos, servicios y experiencias en El Salvador.",
+          "Descubre los centros comerciales CENTRAL: tiendas, gastronomía, eventos, servicios y experiencias en El Salvador.",
       },
       { property: "og:title", content: "CENTRAL | Centros comerciales de El Salvador" },
       {
@@ -60,7 +60,7 @@ function Home() {
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/55 to-ink/15" aria-hidden />
         <div className="container-central w-full pb-12 pt-28 md:pb-20">
           <div className="fade-up max-w-4xl">
-            <p className="eyebrow text-ink-foreground/60">CENTRAL · Grupo Galo</p>
+            <p className="eyebrow text-ink-foreground/60">CENTRAL · El Salvador</p>
             <h1 className="display-xl mt-5">Vivir CENTRAL</h1>
             <p className="mt-6 max-w-lg text-base leading-relaxed text-ink-foreground/75 md:text-lg">
               Espacios que conectan personas, ciudades y nuevas historias.
@@ -212,7 +212,7 @@ function InstitutionalSection() {
         </div>
         <div className="lg:col-span-7 lg:col-start-6">
           <p className="text-xl leading-relaxed md:text-2xl">{site.description}</p>
-          <p className="mt-5 text-sm text-muted-foreground">Una marca de Grupo Galo en El Salvador.</p>
+          <p className="mt-5 text-sm text-muted-foreground">Una marca salvadoreña de centros comerciales.</p>
         </div>
       </div>
     </Section>

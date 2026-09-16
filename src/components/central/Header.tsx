@@ -12,7 +12,7 @@ const menuGroups = [
     links: [
       { label: "Inicio", to: "/", hash: undefined },
       { label: "Novedades", to: "/novedades" },
-      { label: "Información institucional", to: "/", hash: "institucional" },
+      
     ],
   },
   {
@@ -113,7 +113,7 @@ export function Header() {
               </nav>
 
               <div className="container-central border-t border-ink-foreground/15 py-6">
-                <p className="text-xs text-ink-foreground/45">CENTRAL · Grupo Galo · El Salvador</p>
+                <p className="text-xs text-ink-foreground/45">CENTRAL · El Salvador</p>
               </div>
             </div>
           </SheetContent>

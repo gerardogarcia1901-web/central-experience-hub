@@ -22,7 +22,7 @@ export const homeModules: { id: HomeModuleId; enabled: boolean; order: number }[
 export const centralPillars = ["Comprar", "Comer", "Compartir", "Vivir"] as const;
 
 export const featuredNews = [
-  { slug: "central-crece-en-oriente", locationSlug: "santa-rosa-de-lima" },
+  { slug: "terraza-gastronomica", locationSlug: "san-miguel-centro" },
   { slug: "nuevas-marcas-san-miguel", locationSlug: "san-miguel-centro" },
   { slug: "compromiso-comunidad", locationSlug: "san-miguel-centro" },
 ] as const;

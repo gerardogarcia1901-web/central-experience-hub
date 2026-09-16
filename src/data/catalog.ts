@@ -286,7 +286,7 @@ export const articles: Article[] = [
     slug: "central-crece-en-oriente",
     title: "CENTRAL crece en el oriente del país",
     summary:
-      "La marca de Grupo Galo confirma su segundo desarrollo comercial y proyecta nuevas ubicaciones en El Salvador.",
+      "La marca confirma su segundo desarrollo comercial y proyecta nuevas ubicaciones en El Salvador.",
     body: [
       "CENTRAL continúa consolidando su presencia en el oriente salvadoreño con el desarrollo de su segundo centro comercial en Santa Rosa de Lima, un proyecto pensado para atender a las familias de La Unión y municipios vecinos.",
       "El modelo de la marca combina plazas abiertas, mezcla comercial equilibrada y espacios diseñados para el encuentro. Cada desarrollo se adapta a la escala de su ciudad, manteniendo los mismos estándares de servicio, seguridad y experiencia.",

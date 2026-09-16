@@ -1,14 +1,14 @@
 export const site = {
   name: "CENTRAL",
-  operator: "Grupo Galo",
+  operator: "CENTRAL",
   tagline: "Vivir CENTRAL",
   description:
-    "CENTRAL es la marca de centros comerciales de Grupo Galo en El Salvador: compras, gastronomía, experiencias y entretenimiento en un mismo destino.",
+    "CENTRAL es una marca de centros comerciales en El Salvador: compras, gastronomía, experiencias y entretenimiento en un mismo destino.",
   email: "info@central.com.sv",
   leasingEmail: "arrendamientos@central.com.sv",
   phone: "+503 2600 0000",
   whatsapp: "+503 7000 0000",
-  address: "Oficinas corporativas Grupo Galo, San Salvador, El Salvador",
+  address: "Oficinas corporativas CENTRAL, San Salvador, El Salvador",
   social: [
     { label: "Instagram", href: "#" },
     { label: "Facebook", href: "#" },
