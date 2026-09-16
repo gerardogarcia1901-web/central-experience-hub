@@ -6,20 +6,26 @@ import texturaImg from "@/assets/texture-arq.jpg";
 
 export type HomeModuleId =
   | "locations"
-  | "discovery"
-  | "highlights"
   | "experiences"
-  | "visit"
-  | "leasing";
+  | "news"
+  | "leasing"
+  | "institutional";
 
 export const homeModules: { id: HomeModuleId; enabled: boolean; order: number }[] = [
   { id: "locations", enabled: true, order: 1 },
-  { id: "discovery", enabled: true, order: 2 },
-  { id: "highlights", enabled: true, order: 3 },
-  { id: "experiences", enabled: false, order: 4 },
-  { id: "visit", enabled: true, order: 5 },
-  { id: "leasing", enabled: true, order: 6 },
+  { id: "experiences", enabled: true, order: 2 },
+  { id: "news", enabled: true, order: 3 },
+  { id: "leasing", enabled: true, order: 4 },
+  { id: "institutional", enabled: true, order: 5 },
 ];
+
+export const centralPillars = ["Comprar", "Comer", "Compartir", "Vivir"] as const;
+
+export const featuredNews = [
+  { slug: "central-crece-en-oriente", locationSlug: "santa-rosa-de-lima" },
+  { slug: "nuevas-marcas-san-miguel", locationSlug: "san-miguel-centro" },
+  { slug: "compromiso-comunidad", locationSlug: "san-miguel-centro" },
+] as const;
 
 export const discoveryLinks = [
   {

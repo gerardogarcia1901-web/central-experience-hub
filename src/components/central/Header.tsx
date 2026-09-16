@@ -1,36 +1,24 @@
 import { Link } from "@tanstack/react-router";
-import { Clock3, Globe, Menu, Search, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { locations, statusLabels } from "@/data/locations";
-import { stores } from "@/data/catalog";
+import { locations } from "@/data/locations";
 import { cn } from "@/lib/utils";
 
 const menuGroups = [
   {
-    label: "Explorar",
+    label: "CENTRAL",
     links: [
-      { label: "Inicio", to: "/" },
-      { label: "Eventos", to: "/eventos" },
-      { label: "Promociones", to: "/promociones" },
+      { label: "Inicio", to: "/", hash: undefined },
       { label: "Novedades", to: "/novedades" },
+      { label: "Información institucional", to: "/", hash: "institucional" },
     ],
   },
   {
-    label: "Descubre",
+    label: "Ubicaciones",
     links: [
-      { label: "Marcas y tiendas", to: "/directorio" },
-      { label: "Gastronomía", to: "/gastronomia" },
-      { label: "Directorio completo", to: "/directorio" },
-    ],
-  },
-  {
-    label: "Centros",
-    links: [
-      { label: "Todos los centros", to: "/ubicaciones" },
+      { label: "Todas las ubicaciones", to: "/ubicaciones" },
       ...locations.map((location) => ({
         label: location.shortName,
         to: `/ubicaciones/${location.slug}`,
@@ -38,11 +26,9 @@ const menuGroups = [
     ],
   },
   {
-    label: "Conecta",
+    label: "Comercial",
     links: [
-      { label: "Planifica tu visita", to: "/ubicaciones" },
       { label: "Arrendamientos", to: "/arrendamientos" },
-      { label: "Contacto", to: "/contacto" },
     ],
   },
 ] as const;
@@ -52,59 +38,6 @@ function Wordmark({ className }: { className?: string }) {
     <Link to="/" className={cn("wordmark text-xl leading-none md:text-2xl", className)} aria-label="CENTRAL, inicio">
       CENTRAL
     </Link>
-  );
-}
-
-function SearchDialog() {
-  const [query, setQuery] = useState("");
-  const results = query.trim()
-    ? stores.filter((s) => s.name.toLowerCase().includes(query.trim().toLowerCase())).slice(0, 6)
-    : [];
-
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="rounded-full text-ink-foreground hover:bg-ink-foreground/10 hover:text-ink-foreground"
-          aria-label="Buscar"
-        >
-          <Search className="size-4" />
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="top-24 max-w-2xl translate-y-0 rounded-none border-border p-0">
-        <DialogHeader className="border-b px-6 py-4">
-          <DialogTitle className="eyebrow text-muted-foreground">Buscar en CENTRAL</DialogTitle>
-        </DialogHeader>
-        <div className="p-6">
-          <Input
-            autoFocus
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Busca una tienda, restaurante o marca"
-            className="h-12 rounded-none border-0 border-b border-border px-0 text-lg focus-visible:ring-0"
-          />
-          <ul className="mt-6 space-y-1">
-            {results.map((store) => (
-              <li key={store.slug}>
-                <Link
-                  to="/directorio/$slug"
-                  params={{ slug: store.slug }}
-                  className="flex items-center justify-between px-2 py-3 text-sm transition-colors hover:bg-muted"
-                >
-                  <span className="font-medium">{store.name}</span>
-                  <span className="text-muted-foreground">{store.local}</span>
-                </Link>
-              </li>
-            ))}
-            {query && results.length === 0 && (
-              <li className="py-3 text-sm text-muted-foreground">Sin resultados para “{query}”.</li>
-            )}
-          </ul>
-        </div>
-      </DialogContent>
-    </Dialog>
   );
 }
 
@@ -142,19 +75,14 @@ export function Header() {
                   <span className="hidden text-sm font-medium md:inline">Cerrar</span>
                 </Button>
                 <Wordmark className="absolute left-1/2 -translate-x-1/2 text-lg md:text-2xl" />
-                <Link
-                  to="/ubicaciones"
-                  onClick={() => setOpen(false)}
-                  className="flex items-center gap-2 text-sm font-medium transition-opacity hover:opacity-70"
-                >
-                  <Clock3 className="size-5" />
-                  <span className="hidden sm:inline">Horarios</span>
+                <Link to="/ubicaciones" onClick={() => setOpen(false)} className="text-sm font-medium transition-opacity hover:opacity-70">
+                  Ubicaciones
                 </Link>
               </div>
 
               <nav
                 aria-label="Navegación principal"
-                className="container-central grid gap-x-10 gap-y-12 py-12 sm:grid-cols-2 md:py-16 lg:grid-cols-4 lg:py-24"
+                className="container-central grid gap-x-16 gap-y-12 py-12 sm:grid-cols-2 md:py-16 lg:grid-cols-3 lg:py-24"
               >
                 {menuGroups.map((group, groupIndex) => (
                   <section
@@ -170,6 +98,7 @@ export function Header() {
                         <li key={`${group.label}-${item.label}`}>
                           <Link
                             to={item.to}
+                            hash={"hash" in item ? item.hash : undefined}
                             onClick={() => setOpen(false)}
                             className="font-display text-lg font-medium text-ink-foreground/90 transition-colors hover:text-highlight md:text-xl"
                             activeProps={{ className: "text-highlight" }}
@@ -183,15 +112,8 @@ export function Header() {
                 ))}
               </nav>
 
-              <div className="container-central flex flex-wrap items-center justify-between gap-5 border-t border-ink-foreground/15 py-6">
-                <div className="flex items-center gap-2">
-                  <SearchDialog />
-                  <span className="text-sm text-ink-foreground/65">Buscar en CENTRAL</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-ink-foreground/45">
-                  <Globe className="size-4" />
-                  Español
-                </div>
+              <div className="container-central border-t border-ink-foreground/15 py-6">
+                <p className="text-xs text-ink-foreground/45">CENTRAL · Grupo Galo · El Salvador</p>
               </div>
             </div>
           </SheetContent>
@@ -199,12 +121,8 @@ export function Header() {
 
         <Wordmark className="absolute left-1/2 -translate-x-1/2 text-lg md:text-2xl" />
 
-        <Link
-          to="/ubicaciones"
-          className="flex items-center gap-2 text-sm font-medium transition-opacity hover:opacity-70"
-        >
-          <Clock3 className="size-5" />
-          <span className="hidden sm:inline">Horarios</span>
+        <Link to="/ubicaciones" className="text-sm font-medium transition-opacity hover:opacity-70">
+          Ubicaciones
         </Link>
       </div>
     </header>
