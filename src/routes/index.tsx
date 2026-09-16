@@ -98,19 +98,14 @@ function LocationsSection() {
       <div className="mt-10 grid gap-6 md:grid-cols-2 lg:gap-8">
         {locations.map((location) => (
           <article key={location.slug} className="group overflow-hidden bg-card">
-            <Link to="/ubicaciones/$slug" params={{ slug: location.slug }} className="block">
-              <div className="hover-zoom relative aspect-[16/9] overflow-hidden">
-                <img src={location.image} alt={`Vista de ${location.name}`} className="image-cover" loading="lazy" width={1600} height={900} />
-                <span className="absolute left-5 top-5 bg-background/90 px-3 py-1 eyebrow">{location.department}</span>
-              </div>
-              <div className="flex items-end justify-between gap-6 border border-t-0 border-border p-6 md:p-8">
-                <div>
-                  <p className="eyebrow text-muted-foreground">{location.city}, {location.department}</p>
-                  <h3 className="mt-3 font-display text-xl font-bold uppercase md:text-2xl">{location.name}</h3>
-                </div>
-                <ArrowUpRight className="size-5 shrink-0 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden />
-              </div>
-            </Link>
+            <div className="relative aspect-[16/9] overflow-hidden">
+              <img src={location.image} alt={`Vista de ${location.name}`} className="image-cover" loading="lazy" width={1600} height={900} />
+              <span className="absolute left-5 top-5 bg-background/90 px-3 py-1 eyebrow">{location.department}</span>
+            </div>
+            <div className="border border-t-0 border-border p-6 md:p-8">
+              <p className="eyebrow text-muted-foreground">{location.city}, {location.department}</p>
+              <h3 className="mt-3 font-display text-xl font-bold uppercase md:text-2xl">{location.name}</h3>
+            </div>
           </article>
         ))}
       </div>

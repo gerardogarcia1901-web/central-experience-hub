@@ -51,16 +51,12 @@ export function Footer() {
                 <ul className="mt-6 space-y-4">
                   {locations.map((loc) => (
                     <li key={loc.slug}>
-                      <Link
-                        to="/ubicaciones/$slug"
-                        params={{ slug: loc.slug }}
-                        className="text-base text-ink-foreground/65 transition-colors hover:text-ink-foreground"
-                      >
+                      <span className="block text-base text-ink-foreground/65">
                         {loc.shortName}
                         <span className="block text-xs text-ink-foreground/35">
                            {loc.city}, {loc.department}
                         </span>
-                      </Link>
+                      </span>
                     </li>
                   ))}
                 </ul>
