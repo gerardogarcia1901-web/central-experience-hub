@@ -207,8 +207,7 @@ function InstitutionalSection() {
     <Section id="institucional" className="py-20 md:py-28">
       <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-4">
-          <p className="eyebrow text-muted-foreground">Información institucional</p>
-          <h2 className="display-md mt-4">Esto es CENTRAL</h2>
+          <h2 className="display-md">Esto es CENTRAL</h2>
         </div>
         <div className="lg:col-span-7 lg:col-start-6">
           <p className="text-xl leading-relaxed md:text-2xl">{site.description}</p>
