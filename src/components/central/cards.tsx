@@ -28,9 +28,9 @@ export function LocationCard({ location, size = "default" }: { location: Central
         {children}
       </a>
     ) : (
-      <Link to="/ubicaciones/$slug" params={{ slug: location.slug }} className={className} aria-label={ariaLabel}>
+      <div className={className} aria-label={ariaLabel}>
         {children}
-      </Link>
+      </div>
     );
 
   return (
@@ -54,13 +54,14 @@ export function LocationCard({ location, size = "default" }: { location: Central
         <StatusBadge status={location.status} className="self-start" />
         <h3 className={cn("display-md", size === "large" ? "text-3xl md:text-4xl" : size === "compact" ? "text-xl md:text-2xl" : "text-2xl")}>{location.name}</h3>
         <p className="text-sm leading-relaxed text-muted-foreground">{location.description}</p>
-        {wrap(
-          "mt-auto inline-flex items-center gap-2 eyebrow underline-offset-8 transition-all hover:gap-3 hover:underline",
-          <>
-            {linkLabel}
-            <ArrowUpRight className="size-4" />
-          </>,
-        )}
+        {external &&
+          wrap(
+            "mt-auto inline-flex items-center gap-2 eyebrow underline-offset-8 transition-all hover:gap-3 hover:underline",
+            <>
+              {linkLabel}
+              <ArrowUpRight className="size-4" />
+            </>,
+          )}
       </div>
     </article>
   );

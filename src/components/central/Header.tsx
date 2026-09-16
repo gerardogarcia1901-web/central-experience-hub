@@ -3,7 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { locations } from "@/data/locations";
+
 import { cn } from "@/lib/utils";
 
 const menuGroups = [
@@ -19,16 +19,21 @@ const menuGroups = [
     label: "Ubicaciones",
     links: [
       { label: "Todas las ubicaciones", to: "/ubicaciones" },
-      ...locations.map((location) => ({
-        label: location.shortName,
-        to: `/ubicaciones/${location.slug}`,
-      })),
+    ],
+  },
+  {
+    label: "Comercios",
+    links: [
+      { label: "Directorio", to: "/directorio" },
+      { label: "Gastronomía", to: "/gastronomia" },
+      { label: "Promociones", to: "/promociones" },
     ],
   },
   {
     label: "Comercial",
     links: [
       { label: "Arrendamientos", to: "/arrendamientos" },
+      { label: "Contacto", to: "/contacto" },
     ],
   },
 ] as const;
