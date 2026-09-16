@@ -19,16 +19,21 @@ const menuGroups = [
     label: "Ubicaciones",
     links: [
       { label: "Todas las ubicaciones", to: "/ubicaciones" },
-      ...locations.map((location) => ({
-        label: location.shortName,
-        to: `/ubicaciones/${location.slug}`,
-      })),
+    ],
+  },
+  {
+    label: "Comercios",
+    links: [
+      { label: "Directorio", to: "/directorio" },
+      { label: "Gastronomía", to: "/gastronomia" },
+      { label: "Promociones", to: "/promociones" },
     ],
   },
   {
     label: "Comercial",
     links: [
       { label: "Arrendamientos", to: "/arrendamientos" },
+      { label: "Contacto", to: "/contacto" },
     ],
   },
 ] as const;
