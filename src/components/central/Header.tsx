@@ -98,7 +98,7 @@ export function Header() {
                         <li key={`${group.label}-${item.label}`}>
                           <Link
                             to={item.to}
-                            hash={"hash" in item ? item.hash : undefined}
+                            {...("hash" in item && item.hash ? { hash: item.hash } : {})}
                             onClick={() => setOpen(false)}
                             className="font-display text-lg font-medium text-ink-foreground/90 transition-colors hover:text-highlight md:text-xl"
                             activeProps={{ className: "text-highlight" }}

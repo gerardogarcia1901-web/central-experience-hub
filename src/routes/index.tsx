@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   ArrowUpRight,
-  MapPin,
 } from "lucide-react";
 import heroImg from "@/assets/hero-central.jpg";
 import { Button } from "@/components/ui/button";
