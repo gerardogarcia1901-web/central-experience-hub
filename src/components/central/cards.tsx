@@ -28,9 +28,9 @@ export function LocationCard({ location, size = "default" }: { location: Central
         {children}
       </a>
     ) : (
-      <Link to="/ubicaciones/$slug" params={{ slug: location.slug }} className={className} aria-label={ariaLabel}>
+      <div className={className} aria-label={ariaLabel}>
         {children}
-      </Link>
+      </div>
     );
 
   return (
