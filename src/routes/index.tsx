@@ -1,8 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  ArrowUpRight,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import heroImg from "@/assets/hero-central.jpg";
 import { Button } from "@/components/ui/button";
 import { Section, SectionHeading } from "@/components/central/primitives";
