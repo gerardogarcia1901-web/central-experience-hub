@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 
 import { legalLinks, mainNav, site } from "@/data/site";
-import { locations, statusLabels } from "@/data/locations";
+import { locations } from "@/data/locations";
 
 export function Footer() {
   const [email, setEmail] = useState("");
@@ -58,7 +58,7 @@ export function Footer() {
                       >
                         {loc.shortName}
                         <span className="block text-xs text-ink-foreground/35">
-                          {statusLabels[loc.status]}
+                           {loc.city}, {loc.department}
                         </span>
                       </Link>
                     </li>
