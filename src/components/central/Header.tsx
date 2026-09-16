@@ -3,7 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { locations } from "@/data/locations";
+
 import { cn } from "@/lib/utils";
 
 const menuGroups = [
