@@ -16,10 +16,11 @@ export function Footer() {
 
           <nav aria-label="Pie de página" className="grid gap-8 sm:grid-cols-3 md:col-span-7">
             <div>
-              <h2 className="eyebrow text-ink-foreground/45">CENTRAL</h2>
+              <h2 className="eyebrow text-ink-foreground/45">Contacto</h2>
               <ul className="mt-5 space-y-3 text-sm">
-                <li><Link to="/" hash="institucional" className="text-ink-foreground/80 hover:text-primary">Acerca de CENTRAL</Link></li>
-                <li><Link to="/contacto" className="text-ink-foreground/80 hover:text-primary">Contacto</Link></li>
+                <li><a href="https://wa.me/50376979921" target="_blank" rel="noopener noreferrer" className="text-ink-foreground/80 hover:text-primary">WhatsApp 7697-9921</a></li>
+                <li><a href={`mailto:${site.email}`} className="text-ink-foreground/80 hover:text-primary">{site.email}</a></li>
+                <li><Link to="/" className="text-ink-foreground/80 hover:text-primary">Acerca de CENTRAL</Link></li>
               </ul>
             </div>
             <div>
