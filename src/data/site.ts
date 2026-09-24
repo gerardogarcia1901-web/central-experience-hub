@@ -9,23 +9,16 @@ export const site = {
   phone: "+503 2600 0000",
   whatsapp: "+503 7000 0000",
   address: "Oficinas corporativas CENTRAL, San Salvador, El Salvador",
-  social: [
-    { label: "Instagram", href: "#" },
-    { label: "Facebook", href: "#" },
-    { label: "TikTok", href: "#" },
-    { label: "LinkedIn", href: "#" },
-  ],
+  social: [{ label: "Instagram", handle: "@central.elsalvador", href: "https://www.instagram.com/central.elsalvador" }],
 } as const;
 
 export const mainNav = [
-  { label: "CENTRAL", to: "/" },
-  { label: "Ubicaciones", to: "/ubicaciones" },
-  { label: "Novedades", to: "/novedades" },
-  { label: "Arrendamientos", to: "/arrendamientos" },
+  { label: "Nuestras ubicaciones", to: "/ubicaciones" },
+  { label: "Promociones", to: "/promociones" },
+  { label: "Arrendamiento", to: "/arrendamientos" },
 ] as const;
 
 export const legalLinks = [
-  { label: "Política de privacidad", to: "/contacto" },
-  { label: "Términos y condiciones", to: "/contacto" },
-  { label: "Reglamento de visitantes", to: "/contacto" },
+  { label: "Política de Privacidad", to: "/contacto" },
+  { label: "Términos y Condiciones", to: "/contacto" },
 ] as const;
