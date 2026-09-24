@@ -4,10 +4,10 @@ export const site = {
   tagline: "Vivir CENTRAL",
   description:
     "CENTRAL es una marca de centros comerciales en El Salvador: compras, gastronomía, experiencias y entretenimiento en un mismo destino.",
-  email: "info@central.com.sv",
-  leasingEmail: "arrendamientos@central.com.sv",
-  phone: "+503 2600 0000",
-  whatsapp: "+503 7000 0000",
+  email: "info@grupogalo.net",
+  leasingEmail: "info@grupogalo.net",
+  phone: "+503 7697-9921",
+  whatsapp: "+503 7697-9921",
   address: "Oficinas corporativas CENTRAL, San Salvador, El Salvador",
   social: [{ label: "Instagram", handle: "@central.elsalvador", href: "https://www.instagram.com/central.elsalvador" }],
 } as const;
