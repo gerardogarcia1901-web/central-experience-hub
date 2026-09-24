@@ -170,8 +170,8 @@ function ContactoPage() {
               <ul className="mt-5 flex flex-wrap gap-3">
                 {site.social.map((s) => (
                   <li key={s.label}>
-                    <a href={s.href} className="border border-border px-4 py-2 eyebrow transition-colors hover:border-foreground">
-                      {s.label}
+                    <a href={s.href} target="_blank" rel="noopener noreferrer" className="border border-border px-4 py-2 eyebrow transition-colors hover:border-foreground">
+                      {s.label} {s.handle}
                     </a>
                   </li>
                 ))}

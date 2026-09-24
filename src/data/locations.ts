@@ -16,7 +16,7 @@ export const locations: CentralLocation[] = [
     city: "San Miguel",
     department: "San Miguel",
     status: "operativo",
-    siteUrl: null,
+    siteUrl: "https://central-discover-spaces.lovable.app",
     tagline: "Centro comercial urbano",
     description:
       "El corazón comercial del oriente salvadoreño: marcas, gastronomía y servicios en pleno centro de San Miguel.",
@@ -58,8 +58,8 @@ export const locations: CentralLocation[] = [
     shortName: "Santa Rosa de Lima",
     city: "Santa Rosa de Lima",
     department: "La Unión",
-    status: "operativo",
-    siteUrl: null,
+    status: "proximamente",
+    siteUrl: "https://central-nexus-spot.lovable.app",
     tagline: "Destino comercial de La Unión",
     description:
       "Un nuevo destino comercial para el oriente del país, diseñado como punto de encuentro para la región.",
