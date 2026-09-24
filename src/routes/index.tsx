@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
-import heroImg from "@/assets/hero-central.jpg";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section, SectionHeading } from "@/components/central/primitives";
 import { articles } from "@/data/catalog";
@@ -45,26 +44,18 @@ function Home() {
 
   return (
     <>
-      <section className="relative isolate flex min-h-[78svh] items-end overflow-hidden bg-ink text-ink-foreground md:min-h-[86svh]">
-        <img
-          src={heroImg}
-          alt="Plaza principal de un centro comercial CENTRAL al atardecer"
-          className="absolute inset-0 -z-10 size-full object-cover opacity-70"
-          width={1920}
-          height={1080}
-          fetchPriority="high"
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/55 to-ink/15" aria-hidden />
-        <div className="container-central w-full pb-12 pt-28 md:pb-20">
+      <section className="border-b border-border bg-warm">
+        <div className="container-central py-24 md:py-36 lg:py-44">
           <div className="fade-up max-w-4xl">
-            <p className="eyebrow text-ink-foreground/60">CENTRAL · El Salvador</p>
-            <h1 className="display-xl mt-5">Vivir CENTRAL</h1>
-            <p className="mt-6 max-w-lg text-base leading-relaxed text-ink-foreground/75 md:text-lg">
+            <p className="eyebrow text-muted-foreground">CENTRAL · El Salvador</p>
+            <h1 className="display-xl mt-6">Vivir Central</h1>
+            <span className="mt-8 block h-1 w-16 bg-highlight" aria-hidden />
+            <p className="mt-8 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">
               Espacios que conectan personas, ciudades y nuevas historias.
             </p>
-            <div className="mt-8">
-              <Button asChild size="lg" variant="secondary" className="rounded-none px-8 eyebrow">
-                <Link to="/ubicaciones">Elige tu CENTRAL</Link>
+            <div className="mt-10">
+              <Button asChild size="lg" className="h-12 rounded-none px-8 eyebrow">
+                <Link to="/ubicaciones">Conoce nuestras ubicaciones <ArrowRight /></Link>
               </Button>
             </div>
           </div>
@@ -84,27 +75,29 @@ function Home() {
 function LocationsSection() {
   return (
     <Section className="py-16 md:py-20 lg:py-24">
-      <SectionHeading
-        eyebrow="Nuestros centros"
-        title="Elige tu CENTRAL"
-        description="Conoce nuestras ubicaciones y elige el CENTRAL que quieres visitar."
-        action={
-          <TextLink to="/ubicaciones">Ver todos los centros</TextLink>
-        }
-      />
+      <SectionHeading eyebrow="Nuestras ubicaciones" title="Elige tu CENTRAL" />
       <div className="mt-10 grid gap-6 md:grid-cols-2 lg:gap-8">
-        {locations.map((location) => (
-          <article key={location.slug} className="group overflow-hidden bg-card">
-            <div className="relative aspect-[16/9] overflow-hidden">
-              <img src={location.image} alt={`Vista de ${location.name}`} className="image-cover" loading="lazy" width={1600} height={900} />
-              <span className="absolute left-5 top-5 bg-background/90 px-3 py-1 eyebrow">{location.department}</span>
-            </div>
-            <div className="border border-t-0 border-border p-6 md:p-8">
-              <p className="eyebrow text-muted-foreground">{location.city}, {location.department}</p>
-              <h3 className="mt-3 font-display text-xl font-bold uppercase md:text-2xl">{location.name}</h3>
-            </div>
-          </article>
-        ))}
+        {[...locations].sort((a) => (a.status === "proximamente" ? -1 : 1)).map((location) => {
+          const soon = location.status === "proximamente";
+          return (
+            <article key={location.slug} className="flex min-h-72 flex-col justify-between border border-border bg-background p-8 md:min-h-80 md:p-10">
+              <div className="flex items-start justify-between gap-4">
+                <p className="eyebrow text-muted-foreground">{location.department}</p>
+                {soon && <span className="bg-highlight px-3 py-1 eyebrow text-highlight-foreground">Próximamente</span>}
+              </div>
+              <div>
+                <h3 className="font-display text-3xl font-bold uppercase leading-tight md:text-4xl">{location.name}</h3>
+                {location.siteUrl ? (
+                  <Button asChild size="lg" variant={soon ? "outline" : "default"} className="mt-8 rounded-none px-7 eyebrow">
+                    <a href={location.siteUrl} target="_blank" rel="noopener noreferrer">
+                      {soon ? "Conocer" : "Visitar"} <ArrowUpRight />
+                    </a>
+                  </Button>
+                ) : null}
+              </div>
+            </article>
+          );
+        })}
       </div>
     </Section>
   );
@@ -112,7 +105,7 @@ function LocationsSection() {
 
 function ExperiencesSection() {
   return (
-    <Section tone="sand" className="py-20 md:py-28">
+    <section className="border-y border-border bg-warm py-20 md:py-28"><div className="container-central">
       <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
         <div>
           <p className="eyebrow text-muted-foreground">Experiencia CENTRAL</p>
@@ -128,48 +121,18 @@ function ExperiencesSection() {
           ))}
         </ul>
       </div>
-    </Section>
+      </div></section>
   );
 }
 
 function NewsSection() {
-  const selected = featuredNews.flatMap((item) => {
-    const article = articles.find((entry) => entry.slug === item.slug);
-    return article ? [{ ...article, locationSlug: item.locationSlug }] : [];
-  });
-
+  // Sin contenidos reales aprobados todavía: se muestra un estado limpio.
   return (
     <Section className="py-20 md:py-28">
-      <SectionHeading
-        eyebrow="Actualidad"
-        title="Novedades destacadas"
-        description="Una selección breve de historias y anuncios de nuestras ubicaciones."
-        action={<TextLink to="/novedades">Ver todo</TextLink>}
-      />
-      <div className="mt-12 grid gap-x-7 gap-y-10 md:grid-cols-2 lg:grid-cols-12">
-        {selected.map((item, index) => (
-          <article key={item.slug} className={index === 0 ? "lg:col-span-6" : "lg:col-span-3"}>
-            <Link to="/novedades/$slug" params={{ slug: item.slug }} className="group block">
-              <div className={`overflow-hidden bg-muted ${index === 0 ? "aspect-[16/10]" : "aspect-[4/5]"}`}>
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="image-cover"
-                  loading="lazy"
-                  width={1200}
-                  height={900}
-                />
-              </div>
-              <div className="mt-5">
-                <p className="eyebrow text-muted-foreground">{locationName(item.locationSlug)} · {item.displayDate}</p>
-                <h3 className={`mt-3 font-display font-bold uppercase leading-tight ${index === 0 ? "text-2xl md:text-3xl" : "text-lg"}`}>
-                  {item.title}
-                </h3>
-                {index === 0 && <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">{item.summary}</p>}
-              </div>
-            </Link>
-          </article>
-        ))}
+      <SectionHeading eyebrow="Novedades" title="Novedades de la red" />
+      <div className="mt-10 border border-dashed border-border bg-warm px-8 py-14 text-center md:py-20">
+        <p className="font-display text-xl font-semibold md:text-2xl">Pronto compartiremos novedades de cada CENTRAL.</p>
+        <p className="mt-3 text-sm text-muted-foreground">Síguenos en Instagram {site.social[0].handle} para enterarte primero.</p>
       </div>
     </Section>
   );
@@ -177,7 +140,7 @@ function NewsSection() {
 
 function LeasingSection() {
   return (
-    <section className="bg-sand py-10 md:py-12">
+    <section className="bg-sand py-12 md:py-14">
       <div className="container-central flex flex-col gap-7 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="eyebrow text-muted-foreground">Arrendamientos</p>
