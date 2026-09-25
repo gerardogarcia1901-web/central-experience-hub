@@ -18,8 +18,7 @@ export const locations: CentralLocation[] = [
     status: "operativo",
     siteUrl: "https://central-discover-spaces.lovable.app",
     tagline: "Centro comercial urbano",
-    description:
-      "El corazón comercial del oriente salvadoreño: marcas, gastronomía y servicios en pleno centro de San Miguel.",
+    description: "",
     longDescription:
       "CENTRAL San Miguel Centro reúne en una sola manzana la energía del comercio urbano y la comodidad de un centro comercial contemporáneo. Diseñado para el peatón, conecta calles históricas con plazas abiertas, terrazas gastronómicas y locales pensados para marcas nacionales e internacionales.",
     image: sanMiguelImg,
@@ -61,8 +60,7 @@ export const locations: CentralLocation[] = [
     status: "proximamente",
     siteUrl: "https://central-nexus-spot.lovable.app",
     tagline: "Destino comercial de La Unión",
-    description:
-      "Un nuevo destino comercial para el oriente del país, diseñado como punto de encuentro para la región.",
+    description: "",
     longDescription:
       "CENTRAL Santa Rosa de Lima es el próximo desarrollo de la marca: un centro comercial de escala regional con arquitectura abierta, plazas sombreadas y una mezcla comercial pensada para las familias de La Unión y sus alrededores. El proyecto se encuentra en desarrollo y ya recibe solicitudes de arrendamiento.",
     image: santaRosaImg,

@@ -16,6 +16,8 @@ export const Route = createFileRoute("/ubicaciones/")({
       },
       { property: "og:title", content: "Centros CENTRAL | Ubicaciones en El Salvador" },
       { property: "og:description", content: "Selecciona tu CENTRAL y descubre su experiencia comercial." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: UbicacionesPage,
@@ -27,7 +29,6 @@ function UbicacionesPage() {
       <PageHero
         eyebrow="Nuestros centros"
         title="Encuentra tu CENTRAL"
-        description="Una red de destinos comerciales en crecimiento. Cada CENTRAL tiene su propia mezcla de marcas, gastronomía y experiencias."
         breadcrumbs={[{ label: "Centros" }]}
       />
       <Section>

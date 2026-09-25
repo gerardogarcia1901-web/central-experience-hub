@@ -187,50 +187,7 @@ export const stores: Store[] = [
 
 export const getStore = (slug: string) => stores.find((s) => s.slug === slug);
 
-export const promotions: Promotion[] = [
-  {
-    slug: "temporada-central",
-    title: "Temporada CENTRAL",
-    description:
-      "Hasta 40% de descuento en marcas participantes de moda y calzado durante todo el mes.",
-    image: modaImg,
-    locationSlug: "san-miguel-centro",
-    categorySlug: "moda",
-    validity: "Del 1 al 30 de este mes",
-    cta: "Ver marcas participantes",
-  },
-  {
-    slug: "martes-de-cafe",
-    title: "Martes de café",
-    description: "2x1 en bebidas calientes en los cafés de la terraza gastronómica.",
-    image: gastronomiaImg,
-    locationSlug: "san-miguel-centro",
-    categorySlug: "gastronomia",
-    validity: "Todos los martes",
-    cta: "Conocer restaurantes",
-  },
-  {
-    slug: "noche-de-cine",
-    title: "Noche de cine",
-    description: "Entradas 2x1 en Sala CENTRAL presentando tu ticket de compra del día.",
-    image: eventosImg,
-    locationSlug: "san-miguel-centro",
-    categorySlug: "entretenimiento",
-    validity: "Jueves de 6:00 p.m. a 10:00 p.m.",
-    cta: "Ver condiciones",
-  },
-  {
-    slug: "bienvenida-santa-rosa",
-    title: "Bienvenida Santa Rosa",
-    description:
-      "Beneficios de preapertura para las primeras marcas que se sumen al nuevo proyecto.",
-    image: santaRosaImg,
-    locationSlug: "santa-rosa-de-lima",
-    categorySlug: "servicios",
-    validity: "Vigente hasta la apertura",
-    cta: "Solicitar información",
-  },
-];
+export const promotions: Promotion[] = [];
 
 export const events: CentralEvent[] = [
   {

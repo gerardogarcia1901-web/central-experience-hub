@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/central/Header";
 import { Footer } from "@/components/central/Footer";
+import { CookieConsent } from "@/components/central/CookieConsent";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -143,6 +144,7 @@ function RootComponent() {
         </main>
         <Footer />
       </div>
+      <CookieConsent />
       <Toaster />
     </QueryClientProvider>
   );

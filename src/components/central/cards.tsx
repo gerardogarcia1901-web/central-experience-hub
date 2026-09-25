@@ -53,7 +53,7 @@ export function LocationCard({ location, size = "default" }: { location: Central
       <div className={cn("flex flex-1 flex-col gap-4 border border-t-0 border-border p-6", size === "large" && "p-8")}>
         <StatusBadge status={location.status} className="self-start" />
         <h3 className={cn("display-md", size === "large" ? "text-3xl md:text-4xl" : size === "compact" ? "text-xl md:text-2xl" : "text-2xl")}>{location.name}</h3>
-        <p className="text-sm leading-relaxed text-muted-foreground">{location.description}</p>
+        {location.description && <p className="text-sm leading-relaxed text-muted-foreground">{location.description}</p>}
         {external &&
           wrap(
             "mt-auto inline-flex items-center gap-2 eyebrow underline-offset-8 transition-all hover:gap-3 hover:underline",
