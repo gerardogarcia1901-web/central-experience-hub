@@ -24,6 +24,8 @@ export const Route = createFileRoute("/directorio/$slug")({
         { name: "description", content: store.description },
         { property: "og:title", content: `${store.name} | Directorio CENTRAL` },
         { property: "og:description", content: store.description },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
       ],
     };
   },

@@ -37,11 +37,6 @@ function UbicacionesPage() {
             <LocationCard key={loc.slug} location={loc} size="large" />
           ))}
         </div>
-        <p className="mt-12 max-w-2xl text-sm text-muted-foreground">
-          Cada centro comercial CENTRAL cuenta con su propio sitio web, donde encontrarás su directorio de marcas,
-          horarios, promociones y agenda. CENTRAL continúa expandiéndose en El Salvador y nuevas ubicaciones se
-          incorporarán a esta página conforme avancen los proyectos.
-        </p>
       </Section>
       <CtaSection
         eyebrow="Oportunidades comerciales"

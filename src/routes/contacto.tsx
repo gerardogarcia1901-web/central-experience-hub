@@ -1,185 +1,72 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
-import { Mail, MapPin, Phone } from "lucide-react";
-import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PageHero, Section, SectionHeading } from "@/components/central/primitives";
-import { locations } from "@/data/locations";
-import { site } from "@/data/site";
-import texturaImg from "@/assets/texture-arq.jpg";
+import { Section } from "@/components/central/primitives";
 
-const motivos = [
-  { value: "general", label: "Consulta general" },
-  { value: "arrendamiento", label: "Arrendamiento comercial" },
-  { value: "eventos", label: "Eventos y activaciones" },
-  { value: "prensa", label: "Prensa y comunicación" },
-];
+type FormStatus = "idle" | "sending" | "success" | "error";
+const SUCCESS_MESSAGE = "Solicitud enviada. Gracias por su interés en CENTRAL. Hemos recibido su información.";
+const ERROR_MESSAGE = "No pudimos enviar tu solicitud. Intenta nuevamente.";
 
 export const Route = createFileRoute("/contacto")({
-  head: () => ({
-    meta: [
-      { title: "Contacto | CENTRAL" },
-      {
-        name: "description",
-        content: "Escríbenos para consultas generales, arrendamientos, eventos o prensa en los centros CENTRAL.",
-      },
-      { property: "og:title", content: "Contacto | CENTRAL" },
-      { property: "og:description", content: "Canales de contacto de los centros comerciales CENTRAL." },
-    ],
-  }),
-  component: ContactoPage,
+  head: () => ({ meta: [
+    { title: "Contacto | CENTRAL" },
+    { name: "description", content: "Envía una consulta al equipo de CENTRAL." },
+    { property: "og:title", content: "Contacto | CENTRAL" },
+    { property: "og:description", content: "Formulario de contacto para consultas sobre CENTRAL." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ] }),
+  component: ContactPage,
 });
 
-function ContactoPage() {
-  const [motivo, setMotivo] = useState("general");
-  const [ubicacion, setUbicacion] = useState(locations[0]?.slug ?? "");
+function ContactPage() {
+  const [accepted, setAccepted] = useState(false);
+  const [status, setStatus] = useState<FormStatus>("idle");
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // El envío se conectará más adelante con el backend / CRM.
-    toast.success("Gracias por escribirnos. Nuestro equipo te contactará pronto.");
-    e.currentTarget.reset();
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!accepted) return;
+    setStatus("sending");
+    // El envío se activará al completar la configuración del dominio de correo de CENTRAL.
+    setStatus("error");
   };
 
-  return (
-    <>
-      <PageHero
-        eyebrow="Hablemos"
-        title="Contacto"
-        description="Resolvemos consultas de visitantes, marcas, medios y socios comerciales. Elige el motivo y te dirigimos con el equipo correcto."
-        image={texturaImg}
-        breadcrumbs={[{ label: "Contacto" }]}
-      />
+  return <Section tone="sand" className="py-16 md:py-24">
+    <div className="mx-auto max-w-5xl">
+      <p className="eyebrow text-muted-foreground">Formulario</p>
+      <h1 className="mt-5 text-4xl font-bold uppercase leading-none md:text-6xl">Envíanos un mensaje</h1>
 
-      <Section>
-        <div className="grid gap-16 lg:grid-cols-[1.2fr_1fr]">
-          <div>
-            <SectionHeading eyebrow="Formulario" title="Escríbenos" />
-            <form onSubmit={onSubmit} className="mt-10 space-y-6">
-              <div className="grid gap-6 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <Label htmlFor="nombre">Nombre completo</Label>
-                  <Input id="nombre" name="nombre" required className="h-11 rounded-none" autoComplete="name" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="empresa">Empresa o marca (opcional)</Label>
-                  <Input id="empresa" name="empresa" className="h-11 rounded-none" autoComplete="organization" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Correo electrónico</Label>
-                  <Input id="email" name="email" type="email" required className="h-11 rounded-none" autoComplete="email" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="telefono">Teléfono</Label>
-                  <Input id="telefono" name="telefono" type="tel" className="h-11 rounded-none" autoComplete="tel" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="motivo">Motivo de contacto</Label>
-                  <Select value={motivo} onValueChange={setMotivo}>
-                    <SelectTrigger id="motivo" className="h-11 rounded-none">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="rounded-none">
-                      {motivos.map((m) => (
-                        <SelectItem key={m.value} value={m.value}>
-                          {m.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="centro">Centro comercial</Label>
-                  <Select value={ubicacion} onValueChange={setUbicacion}>
-                    <SelectTrigger id="centro" className="h-11 rounded-none">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="rounded-none">
-                      {locations.map((l) => (
-                        <SelectItem key={l.slug} value={l.slug}>
-                          {l.shortName}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="mensaje">Mensaje</Label>
-                <Textarea id="mensaje" name="mensaje" rows={6} required className="rounded-none" />
-              </div>
-              <p className="text-xs text-muted-foreground">
-                Al enviar este formulario aceptas que utilicemos tus datos para responder tu solicitud.
-              </p>
-              <Button type="submit" size="lg" className="w-full rounded-none eyebrow sm:w-auto sm:px-10">
-                Enviar mensaje
-              </Button>
-            </form>
-          </div>
-
-          <aside className="space-y-10">
-            <div>
-              <p className="eyebrow text-muted-foreground">Contacto general</p>
-              <ul className="mt-5 space-y-3 text-sm">
-                <li className="flex gap-3">
-                  <Mail className="mt-0.5 size-4 shrink-0" aria-hidden />
-                  <a href={`mailto:${site.email}`} className="hover:underline">{site.email}</a>
-                </li>
-                <li className="flex gap-3">
-                  <Phone className="mt-0.5 size-4 shrink-0" aria-hidden />
-                  <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="hover:underline">{site.phone}</a>
-                </li>
-                <li className="flex gap-3 text-muted-foreground">
-                  <MapPin className="mt-0.5 size-4 shrink-0" aria-hidden /> {site.address}
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <p className="eyebrow text-muted-foreground">Arrendamientos</p>
-              <p className="mt-4 text-sm text-muted-foreground">
-                Para solicitudes de espacios comerciales escribe directamente a{" "}
-                <a href={`mailto:${site.leasingEmail}`} className="text-foreground underline underline-offset-4">
-                  {site.leasingEmail}
-                </a>
-                .
-              </p>
-            </div>
-
-            <div>
-              <p className="eyebrow text-muted-foreground">Nuestros centros</p>
-              <ul className="mt-5 divide-y divide-border border-y border-border">
-                {locations.map((l) => (
-                  <li key={l.slug} className="py-4">
-                    <p className="font-display text-sm font-semibold uppercase tracking-tight">{l.name}</p>
-                    <p className="mt-1 text-sm text-muted-foreground">{l.address}</p>
-                    <p className="mt-1 text-sm">
-                      <a href={`tel:${l.phone.replace(/\s/g, "")}`} className="hover:underline">{l.phone}</a>
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <p className="eyebrow text-muted-foreground">Redes sociales</p>
-              <ul className="mt-5 flex flex-wrap gap-3">
-                {site.social.map((s) => (
-                  <li key={s.label}>
-                    <a href={s.href} target="_blank" rel="noopener noreferrer" className="border border-border px-4 py-2 eyebrow transition-colors hover:border-foreground">
-                      {s.label} {s.handle}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </aside>
+      <form onSubmit={onSubmit} className="mt-12 space-y-7 md:mt-16">
+        <Field label="Nombre completo" htmlFor="contact-name"><Input id="contact-name" name="name" required minLength={2} maxLength={100} autoComplete="name" className="h-12 rounded-none shadow-sm" /></Field>
+        <div className="grid gap-7 sm:grid-cols-2">
+          <Field label="Correo electrónico" htmlFor="contact-email"><Input id="contact-email" name="email" type="email" required maxLength={255} autoComplete="email" className="h-12 rounded-none shadow-sm" /></Field>
+          <Field label="Teléfono" htmlFor="contact-phone"><Input id="contact-phone" name="phone" type="tel" maxLength={25} autoComplete="tel" className="h-12 rounded-none shadow-sm" /></Field>
+          <Field label="Ubicación de interés" htmlFor="contact-location">
+            <select id="contact-location" name="location" required defaultValue="san-miguel-centro" className="h-12 w-full border border-input bg-background px-3 text-sm shadow-sm outline-none focus:border-foreground focus:ring-1 focus:ring-ring"><option value="san-miguel-centro">San Miguel Centro</option><option value="santa-rosa-de-lima">Santa Rosa de Lima</option></select>
+          </Field>
+          <Field label="Asunto" htmlFor="contact-subject">
+            <select id="contact-subject" name="subject" required defaultValue="informacion-general" className="h-12 w-full border border-input bg-background px-3 text-sm shadow-sm outline-none focus:border-foreground focus:ring-1 focus:ring-ring"><option value="informacion-general">Información general</option><option value="comentario-sugerencia">Comentario o sugerencia</option><option value="promociones-eventos">Promociones y eventos</option><option value="arrendamiento">Arrendamiento</option><option value="privacidad">Privacidad y datos personales</option><option value="otro">Otro</option></select>
+          </Field>
         </div>
-      </Section>
-    </>
-  );
+        <Field label="Mensaje" htmlFor="contact-message"><Textarea id="contact-message" name="message" required minLength={5} maxLength={1500} rows={7} className="rounded-none shadow-sm" /></Field>
+
+        <div className="flex items-start gap-3">
+          <Checkbox id="contact-privacy" checked={accepted} onCheckedChange={(value) => setAccepted(value === true)} className="mt-0.5 rounded-none" aria-required="true" />
+          <Label htmlFor="contact-privacy" className="text-sm font-normal leading-relaxed text-muted-foreground">He leído la <Link to="/politica-de-privacidad" target="_blank" className="font-medium text-foreground underline underline-offset-4">Política de Privacidad</Link> y autorizo el tratamiento de mis datos para atender esta consulta.</Label>
+        </div>
+
+        {status === "success" && <p role="status" className="border-l-2 border-foreground pl-4 text-sm">{SUCCESS_MESSAGE}</p>}
+        {status === "error" && <p role="alert" className="border-l-2 border-destructive pl-4 text-sm text-destructive">{ERROR_MESSAGE}</p>}
+        <Button type="submit" size="lg" disabled={!accepted || status === "sending"} className="h-12 w-full rounded-none px-10 eyebrow sm:w-auto">{status === "sending" ? "Enviando…" : "Enviar mensaje"}</Button>
+      </form>
+    </div>
+  </Section>;
+}
+
+function Field({ label, htmlFor, children }: { label: string; htmlFor: string; children: React.ReactNode }) {
+  return <div className="space-y-2"><Label htmlFor={htmlFor}>{label}</Label>{children}</div>;
 }

@@ -29,6 +29,8 @@ export const Route = createFileRoute("/directorio/")({
       },
       { property: "og:title", content: "Directorio comercial | CENTRAL" },
       { property: "og:description", content: "Todas las marcas y tiendas de los centros comerciales CENTRAL." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: DirectorioPage,

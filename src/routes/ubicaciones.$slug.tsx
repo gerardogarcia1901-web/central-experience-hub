@@ -26,7 +26,9 @@ export const Route = createFileRoute("/ubicaciones/$slug")({
         { title: `${location.name} | CENTRAL` },
         { name: "description", content: location.description },
         { property: "og:title", content: `${location.name} | CENTRAL` },
-        { property: "og:description", content: location.description },
+        { property: "og:description", content: `Información sobre ${location.name}.` },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
       ],
     };
   },
@@ -66,13 +68,6 @@ function LocationPage() {
           <BackButton fallbackTo="/ubicaciones" className="text-ink-foreground" />
           <StatusBadge status={location.status} className="bg-white/10" />
           <span className="text-sm text-ink-foreground/70">{location.openingInfo}</span>
-          {location.siteUrl && (
-            <Button asChild variant="secondary" className="rounded-none eyebrow">
-              <a href={location.siteUrl} target="_blank" rel="noreferrer">
-                Ir al sitio de {location.shortName}
-              </a>
-            </Button>
-          )}
         </div>
       </PageHero>
 

@@ -18,6 +18,8 @@ export const Route = createFileRoute("/eventos")({
       },
       { property: "og:title", content: "Eventos | CENTRAL" },
       { property: "og:description", content: "Conoce la agenda de actividades de los centros CENTRAL." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: EventosPage,

@@ -8,60 +8,16 @@ import { categoryName } from "@/data/catalog";
 import type { Article, CentralEvent, CentralLocation, Promotion, Store } from "@/data/types";
 
 export function LocationCard({ location, size = "default" }: { location: CentralLocation; size?: "compact" | "default" | "large" }) {
-  const locationSiteUrl = location.siteUrl;
-  const external = Boolean(locationSiteUrl);
-  const linkLabel = external
-    ? `Ir al sitio de ${location.shortName}`
-    : location.status === "operativo"
-      ? `Visitar ${location.shortName}`
-      : "Descubrir proyecto";
-
-  const wrap = (className: string, children: React.ReactNode, ariaLabel?: string) =>
-    external ? (
-      <a
-        href={locationSiteUrl ?? "/ubicaciones"}
-        target="_blank"
-        rel="noreferrer"
-        className={className}
-        aria-label={ariaLabel}
-      >
-        {children}
-      </a>
-    ) : (
-      <div className={className} aria-label={ariaLabel}>
-        {children}
-      </div>
-    );
-
   return (
     <article className="group relative flex flex-col overflow-hidden bg-card">
-      {wrap(
-        cn("hover-zoom relative block overflow-hidden", size === "compact" ? "aspect-[16/9]" : "aspect-4/3"),
-        <>
-          <img
-            src={location.image}
-            alt={`Vista de ${location.name}`}
-            className="image-cover"
-            loading="lazy"
-            width={1600}
-            height={1100}
-          />
-          <span className="absolute left-5 top-5 bg-background/90 px-3 py-1 eyebrow">{location.department}</span>
-        </>,
-        `Ver ${location.name}`,
-      )}
+      <div className={cn("hover-zoom relative block overflow-hidden", size === "compact" ? "aspect-[16/9]" : "aspect-4/3")}>
+        <img src={location.image} alt={`Experiencia en ${location.name}`} className="image-cover" loading="lazy" width={1600} height={1100} />
+        <span className="absolute left-5 top-5 bg-background/90 px-3 py-1 eyebrow">{location.department}</span>
+      </div>
       <div className={cn("flex flex-1 flex-col gap-4 border border-t-0 border-border p-6", size === "large" && "p-8")}>
         <StatusBadge status={location.status} className="self-start" />
         <h3 className={cn("display-md", size === "large" ? "text-3xl md:text-4xl" : size === "compact" ? "text-xl md:text-2xl" : "text-2xl")}>{location.name}</h3>
         {location.description && <p className="text-sm leading-relaxed text-muted-foreground">{location.description}</p>}
-        {external &&
-          wrap(
-            "mt-auto inline-flex items-center gap-2 eyebrow underline-offset-8 transition-all hover:gap-3 hover:underline",
-            <>
-              {linkLabel}
-              <ArrowUpRight className="size-4" />
-            </>,
-          )}
       </div>
     </article>
   );

@@ -14,6 +14,8 @@ export const Route = createFileRoute("/novedades/")({
       },
       { property: "og:title", content: "Novedades | CENTRAL" },
       { property: "og:description", content: "Historias y anuncios de la red de centros comerciales CENTRAL." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: NovedadesPage,
