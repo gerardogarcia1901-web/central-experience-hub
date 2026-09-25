@@ -7,7 +7,7 @@
 - [x] Mantener arrendamientos e información institucional en formato compacto.
 - [x] Simplificar el menú y el pie sin eliminar páginas internas.
 - [x] Validar la experiencia en escritorio y móvil.
-- [ ] Integrar el logo oficial en la navegación.
-- [ ] Publicar el estado real de promociones sin contenido inventado.
-- [ ] Simplificar los textos de Ubicaciones y el acceso a Contacto.
-- [ ] Implementar y validar las preferencias persistentes de cookies.
+- [x] Integrar el logo oficial en la navegación.
+- [x] Publicar el estado real de promociones sin contenido inventado.
+- [x] Simplificar los textos de Ubicaciones y el acceso a Contacto.
+- [x] Implementar y validar las preferencias persistentes de cookies.

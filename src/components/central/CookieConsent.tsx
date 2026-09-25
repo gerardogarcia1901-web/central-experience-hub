@@ -74,7 +74,7 @@ export function CookieConsent() {
       {showBanner && (
         <section
           aria-label="Consentimiento de cookies"
-          className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-warm"
+          className="fixed inset-x-0 bottom-0 z-40 max-h-[100svh] overflow-y-auto border-t border-border bg-warm"
         >
           <div className="container-central grid gap-7 py-7 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-10">
             <div className="max-w-3xl">

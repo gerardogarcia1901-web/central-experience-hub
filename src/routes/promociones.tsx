@@ -11,6 +11,8 @@ export const Route = createFileRoute("/promociones")({
       },
       { property: "og:title", content: "Promociones y campañas | CENTRAL" },
       { property: "og:description", content: "Aprovecha las promociones activas en los centros CENTRAL." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: PromocionesPage,
