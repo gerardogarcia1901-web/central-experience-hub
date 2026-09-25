@@ -23,7 +23,7 @@ export function Footer() {
                 <li><a href="https://wa.me/50376979921" target="_blank" rel="noopener noreferrer" className="text-ink-foreground/80 hover:text-primary">WhatsApp 7697-9921</a></li>
                 <li><a href={`mailto:${site.email}`} className="text-ink-foreground/80 hover:text-primary">{site.email}</a></li>
                 <li><Link to="/contacto" className="text-ink-foreground/80 hover:text-primary">Contacto</Link></li>
-                <li><Link to="/" className="text-ink-foreground/80 hover:text-primary">Acerca de CENTRAL</Link></li>
+                <li><Link to="/acerca-de-central" className="text-ink-foreground/80 hover:text-primary">Acerca de CENTRAL</Link></li>
               </ul>
             </div>
             <div>
@@ -34,6 +34,8 @@ export function Footer() {
                     Instagram {instagram.handle}
                   </a>
                 </li>
+                <li><Link to="/politica-de-privacidad" className="text-ink-foreground/80 hover:text-primary">Política de Privacidad</Link></li>
+                <li><Link to="/terminos-y-condiciones" className="text-ink-foreground/80 hover:text-primary">Términos y Condiciones</Link></li>
               </ul>
             </div>
           </nav>

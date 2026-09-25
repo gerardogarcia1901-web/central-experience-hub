@@ -10,11 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AcercaDeCentralRouteImport } from './routes/acerca-de-central'
 import { Route as ArrendamientosRouteImport } from './routes/arrendamientos'
 import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as EventosRouteImport } from './routes/eventos'
 import { Route as GastronomiaRouteImport } from './routes/gastronomia'
+import { Route as PoliticaDePrivacidadRouteImport } from './routes/politica-de-privacidad'
 import { Route as PromocionesRouteImport } from './routes/promociones'
+import { Route as TerminosYCondicionesRouteImport } from './routes/terminos-y-condiciones'
 import { Route as DirectorioIndexRouteImport } from './routes/directorio.index'
 import { Route as DirectorioSlugRouteImport } from './routes/directorio.$slug'
 import { Route as NovedadesIndexRouteImport } from './routes/novedades.index'
@@ -25,6 +28,11 @@ import { Route as UbicacionesSlugRouteImport } from './routes/ubicaciones.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AcercaDeCentralRoute = AcercaDeCentralRouteImport.update({
+  id: '/acerca-de-central',
+  path: '/acerca-de-central',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ArrendamientosRoute = ArrendamientosRouteImport.update({
@@ -47,9 +55,19 @@ const GastronomiaRoute = GastronomiaRouteImport.update({
   path: '/gastronomia',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PoliticaDePrivacidadRoute = PoliticaDePrivacidadRouteImport.update({
+  id: '/politica-de-privacidad',
+  path: '/politica-de-privacidad',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PromocionesRoute = PromocionesRouteImport.update({
   id: '/promociones',
   path: '/promociones',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TerminosYCondicionesRoute = TerminosYCondicionesRouteImport.update({
+  id: '/terminos-y-condiciones',
+  path: '/terminos-y-condiciones',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DirectorioIndexRoute = DirectorioIndexRouteImport.update({
@@ -85,11 +103,14 @@ const UbicacionesSlugRoute = UbicacionesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/acerca-de-central': typeof AcercaDeCentralRoute
   '/arrendamientos': typeof ArrendamientosRoute
   '/contacto': typeof ContactoRoute
   '/eventos': typeof EventosRoute
   '/gastronomia': typeof GastronomiaRoute
+  '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
   '/promociones': typeof PromocionesRoute
+  '/terminos-y-condiciones': typeof TerminosYCondicionesRoute
   '/directorio/$slug': typeof DirectorioSlugRoute
   '/novedades/$slug': typeof NovedadesSlugRoute
   '/ubicaciones/$slug': typeof UbicacionesSlugRoute
@@ -99,11 +120,14 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/acerca-de-central': typeof AcercaDeCentralRoute
   '/arrendamientos': typeof ArrendamientosRoute
   '/contacto': typeof ContactoRoute
   '/eventos': typeof EventosRoute
   '/gastronomia': typeof GastronomiaRoute
+  '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
   '/promociones': typeof PromocionesRoute
+  '/terminos-y-condiciones': typeof TerminosYCondicionesRoute
   '/directorio/$slug': typeof DirectorioSlugRoute
   '/novedades/$slug': typeof NovedadesSlugRoute
   '/ubicaciones/$slug': typeof UbicacionesSlugRoute
@@ -114,11 +138,14 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/acerca-de-central': typeof AcercaDeCentralRoute
   '/arrendamientos': typeof ArrendamientosRoute
   '/contacto': typeof ContactoRoute
   '/eventos': typeof EventosRoute
   '/gastronomia': typeof GastronomiaRoute
+  '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
   '/promociones': typeof PromocionesRoute
+  '/terminos-y-condiciones': typeof TerminosYCondicionesRoute
   '/directorio/$slug': typeof DirectorioSlugRoute
   '/novedades/$slug': typeof NovedadesSlugRoute
   '/ubicaciones/$slug': typeof UbicacionesSlugRoute
@@ -130,11 +157,14 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/acerca-de-central'
     | '/arrendamientos'
     | '/contacto'
     | '/eventos'
     | '/gastronomia'
+    | '/politica-de-privacidad'
     | '/promociones'
+    | '/terminos-y-condiciones'
     | '/directorio/$slug'
     | '/novedades/$slug'
     | '/ubicaciones/$slug'
@@ -144,11 +174,14 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/acerca-de-central'
     | '/arrendamientos'
     | '/contacto'
     | '/eventos'
     | '/gastronomia'
+    | '/politica-de-privacidad'
     | '/promociones'
+    | '/terminos-y-condiciones'
     | '/directorio/$slug'
     | '/novedades/$slug'
     | '/ubicaciones/$slug'
@@ -158,11 +191,14 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/acerca-de-central'
     | '/arrendamientos'
     | '/contacto'
     | '/eventos'
     | '/gastronomia'
+    | '/politica-de-privacidad'
     | '/promociones'
+    | '/terminos-y-condiciones'
     | '/directorio/$slug'
     | '/novedades/$slug'
     | '/ubicaciones/$slug'
@@ -173,11 +209,14 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AcercaDeCentralRoute: typeof AcercaDeCentralRoute
   ArrendamientosRoute: typeof ArrendamientosRoute
   ContactoRoute: typeof ContactoRoute
   EventosRoute: typeof EventosRoute
   GastronomiaRoute: typeof GastronomiaRoute
+  PoliticaDePrivacidadRoute: typeof PoliticaDePrivacidadRoute
   PromocionesRoute: typeof PromocionesRoute
+  TerminosYCondicionesRoute: typeof TerminosYCondicionesRoute
   DirectorioSlugRoute: typeof DirectorioSlugRoute
   NovedadesSlugRoute: typeof NovedadesSlugRoute
   UbicacionesSlugRoute: typeof UbicacionesSlugRoute
@@ -193,6 +232,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/acerca-de-central': {
+      id: '/acerca-de-central'
+      path: '/acerca-de-central'
+      fullPath: '/acerca-de-central'
+      preLoaderRoute: typeof AcercaDeCentralRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/arrendamientos': {
@@ -223,11 +269,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GastronomiaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/politica-de-privacidad': {
+      id: '/politica-de-privacidad'
+      path: '/politica-de-privacidad'
+      fullPath: '/politica-de-privacidad'
+      preLoaderRoute: typeof PoliticaDePrivacidadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/promociones': {
       id: '/promociones'
       path: '/promociones'
       fullPath: '/promociones'
       preLoaderRoute: typeof PromocionesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terminos-y-condiciones': {
+      id: '/terminos-y-condiciones'
+      path: '/terminos-y-condiciones'
+      fullPath: '/terminos-y-condiciones'
+      preLoaderRoute: typeof TerminosYCondicionesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/directorio/': {
@@ -277,11 +337,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AcercaDeCentralRoute: AcercaDeCentralRoute,
   ArrendamientosRoute: ArrendamientosRoute,
   ContactoRoute: ContactoRoute,
   EventosRoute: EventosRoute,
   GastronomiaRoute: GastronomiaRoute,
+  PoliticaDePrivacidadRoute: PoliticaDePrivacidadRoute,
   PromocionesRoute: PromocionesRoute,
+  TerminosYCondicionesRoute: TerminosYCondicionesRoute,
   DirectorioSlugRoute: DirectorioSlugRoute,
   NovedadesSlugRoute: NovedadesSlugRoute,
   UbicacionesSlugRoute: UbicacionesSlugRoute,
