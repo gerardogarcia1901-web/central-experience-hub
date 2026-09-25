@@ -26,6 +26,8 @@ export const Route = createFileRoute("/gastronomia")({
       },
       { property: "og:title", content: "Gastronomía | CENTRAL" },
       { property: "og:description", content: "Descubre la oferta gastronómica de los centros CENTRAL." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: GastronomiaPage,

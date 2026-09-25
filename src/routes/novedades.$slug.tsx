@@ -23,6 +23,7 @@ export const Route = createFileRoute("/novedades/$slug")({
         { property: "og:title", content: article.title },
         { property: "og:description", content: article.summary },
         { property: "og:type", content: "article" },
+        { name: "twitter:card", content: "summary_large_image" },
       ],
     };
   },

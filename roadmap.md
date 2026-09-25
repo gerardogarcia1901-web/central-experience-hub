@@ -15,4 +15,4 @@
 - [x] Crear Política de Privacidad, Términos y Condiciones y Acerca de CENTRAL.
 - [x] Completar los enlaces de contacto, redes y páginas informativas.
 - [ ] Conectar ambos formularios a info@grupogalo.net (bloqueado: falta configurar el dominio de correo).
-- [ ] Validar formularios y páginas nuevas en escritorio y móvil.
+- [x] Validar formularios y páginas nuevas en escritorio y móvil.
