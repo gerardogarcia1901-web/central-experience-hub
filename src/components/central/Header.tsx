@@ -5,12 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { mainNav } from "@/data/site";
 import { cn } from "@/lib/utils";
+import centralLogo from "@/assets/central-primary.png.asset.json";
 
-// Provisional: reemplazar por el archivo del logo oficial cuando esté disponible.
 function Logo({ className }: { className?: string }) {
   return (
-    <Link to="/" className={cn("wordmark text-lg leading-none md:text-xl", className)} aria-label="CENTRAL, inicio">
-      CENTRAL
+    <Link to="/" className={cn("block shrink-0", className)} aria-label="CENTRAL, inicio">
+      <img src={centralLogo.url} alt="CENTRAL" className="h-auto w-36 md:w-44" width={1600} height={423} />
     </Link>
   );
 }

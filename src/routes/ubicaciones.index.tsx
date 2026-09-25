@@ -27,7 +27,6 @@ function UbicacionesPage() {
       <PageHero
         eyebrow="Nuestros centros"
         title="Encuentra tu CENTRAL"
-        description="Una red de destinos comerciales en crecimiento. Cada CENTRAL tiene su propia mezcla de marcas, gastronomía y experiencias."
         breadcrumbs={[{ label: "Centros" }]}
       />
       <Section>

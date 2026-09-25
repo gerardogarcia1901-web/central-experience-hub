@@ -18,7 +18,3 @@ export const mainNav = [
   { label: "Arrendamiento", to: "/arrendamientos" },
 ] as const;
 
-export const legalLinks = [
-  { label: "Política de Privacidad", to: "/contacto" },
-  { label: "Términos y Condiciones", to: "/contacto" },
-] as const;
